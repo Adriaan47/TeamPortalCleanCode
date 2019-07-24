@@ -4,8 +4,6 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { Router } from '@angular/router';
 import { AlertController, MenuController } from '@ionic/angular';
 import { UsersService } from '../../services/users.service';
-import { HttpClientModule } from '@angular/common/http';
-import { HttpModule } from '@angular/http';
 
 @Component({
   selector: 'app-ProfilePage',
