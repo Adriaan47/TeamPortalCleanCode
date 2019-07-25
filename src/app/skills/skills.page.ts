@@ -6,8 +6,6 @@ import { Router } from '@angular/router';
 import { AlertController, PopoverController } from '@ionic/angular';
 import { Skills } from '../services/skills';
 import { UsersService } from '../services/users.service';
-import { UserService } from '../user.service';
-import { NotifiticationsComponent } from './notifitications/notifitications.component';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -24,108 +22,98 @@ export class SkillsPage implements OnInit {
   uid: string;
   id: any;
 
-// tslint:disable-next-line: no-inferrable-types
+  // tslint:disable-next-line: no-inferrable-types
 
-// tslint:disable-next-line: no-inferrable-types
+  // tslint:disable-next-line: no-inferrable-types
 
-// tslint:disable-next-line: max-line-length
-  constructor (
+  // tslint:disable-next-line: max-line-length
+  constructor(
 
-// tslint:disable-next-line: deprecation
+    // tslint:disable-next-line: deprecation
     private http: Http,
     public router: Router,
     private afs: AngularFirestore,
     private users: UsersService,
     private alertCtrl: AlertController,
     public popoverController: PopoverController,
-        ) {
-    }
+  ) {
+  }
 
   ngOnInit() {
     this.uid = this.users.getUID();
-    this.users.getSkills(this.uid).subscribe((res: Skills[]) => {
+    this.users.getSkills(this.uid).subscribe((res) => {
       this.skills = res;
-   });
-   this.users.getDatas(this.users.getUID()).subscribe(res => {
-    this.res = res;
-  });
+    });
+    this.users.getDatas(this.users.getUID()).subscribe(res => {
+      this.res = res;
+    });
   }
 
 
-    async presentAlertConfirm() {
-      const alert = await this.alertCtrl.create({
-        header: 'Logout?',
-        message: 'Are you sure you want to logout?',
-        buttons: [
-          {
-            text: 'No',
-            role: 'cancel',
-            cssClass: 'secondary',
-            handler: () => {
-              console.log('Confirm Cancel: ?');
-            }
-          }, {
-            text: 'Yes',
-            handler: () => {
-              this.router.navigate(['/login']);
-            }
+  async presentAlertConfirm() {
+    const alert = await this.alertCtrl.create({
+      header: 'Logout?',
+      message: 'Are you sure you want to logout?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel: ?');
           }
-        ]
-    // tslint:disable-next-line: semicolon
-      });
-      await alert.present();
-    }
-
-    async presentAlertConfirmDelete(id: string) {
-      const alert = await this.alertCtrl.create({
-        header: 'Delete Skill?',
-        message: 'Are you sure you want to delete this skill?',
-        buttons: [
-          {
-            text: 'No',
-            role: 'cancel',
-            cssClass: 'secondary',
-            handler: () => {
-              console.log('Confirm Cancel: ?');
-            }
-          }, {
-            text: 'Yes',
-            handler: () => {
-              this.deleteSkill(id);
-              this.refresh();
-            }
+        }, {
+          text: 'Yes',
+          handler: () => {
+            this.router.navigate(['/login']);
           }
-        ]
-    // tslint:disable-next-line: semicolon
-      });
-      await alert.present();
-    }
+        }
+      ]
+      // tslint:disable-next-line: semicolon
+    });
+    await alert.present();
+  }
 
-    async notifications(ev: any) {
-      const popover = await this.popoverController.create({
-          component: NotifiticationsComponent,
-          event: ev,
-          animated: true,
-          showBackdrop: true
-      });
-      return await popover.present();
+  async presentAlertConfirmDelete(id: string) {
+    const alert = await this.alertCtrl.create({
+      header: 'Delete Skill?',
+      message: 'Are you sure you want to delete this skill?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel: ?');
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+            this.deleteSkill(id);
+            this.refresh();
+          }
+        }
+      ]
+      // tslint:disable-next-line: semicolon
+    });
+    await alert.present();
   }
 
   async DismissClick() {
     await this.popoverController.dismiss();
-      }
-delete(itemid) {
-this.afs.doc('members');
-}
+  }
+  delete(itemid) {
+    this.afs.doc('members');
+  }
 
-deleteSkill(id: string) {
-  this.users.deleteSkill(this.users.getUID(), id ).subscribe((res) => {
-    this.res = res;
-    console.log(res);
-    this.refresh();
-  });
-}
-refresh(): void {
-  window.location.reload();
-}
+  deleteSkill(id: string) {
+    this.users.deleteSkill(this.users.getUID(), id).subscribe((res) => {
+      this.res = res;
+      console.log(res);
+      this.refresh();
+    });
+  }
+  refresh(): void {
+    window.location.reload();
+  }
 }

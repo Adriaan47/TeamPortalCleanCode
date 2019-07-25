@@ -1,4 +1,3 @@
-import 'bootstrap';
 import { catchError, map } from 'rxjs/operators';
 import { UsersService } from '../services/users.service';
 import { HttpClient } from '@angular/common/http';
