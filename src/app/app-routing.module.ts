@@ -9,7 +9,13 @@ const routes: Routes = [
   { path: 'skills', loadChildren: './skills/skills.module#SkillsPageModule' },
   { path: 'search-members', loadChildren: './search-members/search-members.module#SearchMembersPageModule' },
   { path: 'projects', loadChildren: './projects/projects.module#ProjectsPageModule' },
-  { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' },  { path: 'project-info', loadChildren: './projects/project-info/project-info.module#ProjectInfoPageModule' }
+  { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' },
+  { path: 'project-info', loadChildren: './projects/project-info/project-info.module#ProjectInfoPageModule' },
+  { path: 'update-skills', loadChildren: './skills/update-skills/update-skills.module#UpdateSkillsPageModule' },
+  { path: 'add-skills', loadChildren: './skills/add-skills/add-skills.module#AddSkillsPageModule' },
+  { path: 'members-info', loadChildren: './search-members/members-info/members-info.module#MembersInfoPageModule' },
+
+
 
 
 

@@ -95,7 +95,7 @@ export class UsersService {
     return this.http.get<Pictures>(`https://demoproject-8b1fa.appspot.com/users/${id}/pictures`);
   }
 
-  getDatas(id: string): Observable<Object> {
+  getDatas(id: string): Observable<UserPublic> {
     return this.http.get(`https://demoproject-8b1fa.appspot.com/users/${id}/get-public`);
   }
 
