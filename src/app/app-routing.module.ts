@@ -2,9 +2,23 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'login', pathMatch: 'full'},
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '', loadChildren: './tabs/tabs.module#TabsPageModule' },
-  { path: 'login', loadChildren: './Pages/login/login.module#LoginPageModule' }
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
+  { path: 'edit-profile', loadChildren: './profile/edit-profile/edit-profile.module#EditProfilePageModule' },
+  { path: 'skills', loadChildren: './skills/skills.module#SkillsPageModule' },
+  { path: 'search-members', loadChildren: './search-members/search-members.module#SearchMembersPageModule' },
+  { path: 'projects', loadChildren: './projects/projects.module#ProjectsPageModule' },
+  { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' },
+  { path: 'project-info', loadChildren: './projects/project-info/project-info.module#ProjectInfoPageModule' },
+  { path: 'update-skills', loadChildren: './skills/update-skills/update-skills.module#UpdateSkillsPageModule' },
+  { path: 'add-skills', loadChildren: './skills/add-skills/add-skills.module#AddSkillsPageModule' },
+  { path: 'members-info', loadChildren: './search-members/members-info/members-info.module#MembersInfoPageModule' },
+
+
+
+
+
 ];
 @NgModule({
   imports: [
