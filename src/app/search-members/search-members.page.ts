@@ -1,3 +1,4 @@
+import { catchError, map } from 'rxjs/operators';
 import { UsersService } from '../services/users.service';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';

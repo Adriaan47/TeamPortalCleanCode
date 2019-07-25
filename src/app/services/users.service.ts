@@ -32,6 +32,9 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UsersService {
+    isAuthenticated() {
+        throw new Error("Method not implemented.");
+    }
   public user: user;
   id: string;
   sid: string;
