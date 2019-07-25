@@ -5,7 +5,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+// import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -59,7 +59,7 @@ import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage';
   ],
   providers: [
     StatusBar,
-    SplashScreen,
+    // SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     UsersService,
     AuthService,

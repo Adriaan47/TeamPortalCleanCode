@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { UsersService } from '../services/users.service';
 import { Router } from '@angular/router';
-import { ToastController, MenuController, AlertController } from '@ionic/angular';
-import { AngularFirestoreDocument, AngularFirestore } from '@angular/fire/firestore';
-import { HttpClient } from '@angular/common/http';
+import { ToastController } from '@ionic/angular';
+// import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+
 
 @Component({
   selector: 'app-login',
@@ -12,74 +12,71 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  mainuser: AngularFirestoreDocument;
-  profilePic: string;
-  sub;
-  res: any;
-  data: any;
+  // tslint:disable-next-line: no-inferrable-types
+  username: string = '';
+  // tslint:disable-next-line: no-inferrable-types
+  password: string = '';
 
+
+
+  // tslint:disable-next-line:max-line-length
   constructor(
+    public afAuth: AngularFireAuth,
+    public user: UsersService,
     public router: Router,
-    private afs: AngularFirestore,
-    private user: UsersService,
-    private users: UsersService,
-    private menu: MenuController,
-    private http: HttpClient,
-    private alertCtrl: AlertController) {
-    this.mainuser = afs.doc(`users/${this.users.getUID()}`);
-    this.sub = this.mainuser.valueChanges().subscribe(event => {
-      this.profilePic = event.profilePic;
-    });
-    this.getDp();
-  }
+    public toastController: ToastController,
+    // private splashScreen: SplashScreen
+    ) {
 
+  }
 
   ngOnInit() {
-    this.users.getMember(this.users.getUID()).subscribe((res) => {
-      this.res = res;
-      console.log(res);
-    });
+    // this.splashScreen.show();
+  }
+  async login() {
+    // tslint:disable-next-line: indent
+    const { username, password } = this;
+    // this.username = '';
+    // this.password = '';
+    // tslint:disable-next-line: indent
+    try {
+      // tslint:disable-next-line: indent
+      // Only sign in with accenture email
+      const res = await this.afAuth.auth.signInWithEmailAndPassword(username + '@accenture.com', password);
 
+      if (res.user) {
+        this.user.setUser({
+          username,
+          uid: res.user.uid
+        });
+
+        this.router.navigate(['/tabs']);
+        console.log(username);
+       }
+
+    } catch (err) {
+      console.log(err);
+      const toast = await this.toastController.create({
+        message: 'Incorrect password or email!.',
+        duration: 3000,
+        color: 'danger'
+      });
+      toast.present();
+
+    }
+    // this.wait(3000);
+    // this.refresh();
+  }
+  refresh(): void {
+    window.location.reload();
   }
 
-  getDp() {
-    this.users.getProfilePicture(this.users.getUID()).subscribe((data) => {
-      this.data = data;
-      console.log(data);
-    });
-  }
-
-
-  edit() {
-    this.router.navigate(['/tabs/profile']);
-  }
-
-  async presentAlertConfirm() {
-    const alert = await this.alertCtrl.create({
-      header: 'Logout',
-      message: 'Are you sure you want to logout?',
-      buttons: [
-        {
-          text: 'No',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Confirm Cancel: ?');
-          }
-        }, {
-          text: 'Yes',
-          handler: () => {
-            this.router.navigate(['/login']);
-          }
-        }
-      ]
-      // tslint:disable-next-line: semicolon
-    });
-    await alert.present();
-  }
-
-  openFirst() {
-    this.menu.enable(true, 'first');
-    this.menu.open('first');
+  wait(ms) {
+    const start = new Date().getTime();
+    let end = start;
+    while (end < start + ms) {
+      end = new Date().getTime();
+    }
   }
 }
+
