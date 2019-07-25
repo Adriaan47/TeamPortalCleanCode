@@ -31,7 +31,7 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.splashScreen.show();
+    console.log(this.user.getUID());
   }
   async login() {
     // tslint:disable-next-line: indent

@@ -11,7 +11,7 @@ import { flatMap } from 'rxjs/operators';
   styleUrls: ['./projects.page.scss'],
 })
 export class ProjectsPage implements OnInit {
-  information: any[];
+  information: any[] = [];
   automaticClose = false;
 
 
@@ -20,9 +20,10 @@ export class ProjectsPage implements OnInit {
     public router: Router,
     private http: HttpClient, ) {
 
-    this.http.get('project-info/information.json').subscribe(res => {
-    this.information = res['data'];
-    this.information[0].open = false;
+    this.http.get('project-info/information.json').forEach(res => {
+      this.information.push(res);
+      console.log(this.information);
+      return this.information;
     });
   }
 

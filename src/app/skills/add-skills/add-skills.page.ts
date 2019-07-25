@@ -18,7 +18,7 @@ export class AddSkillsPage implements OnInit {
 
 
   // tslint:disable-next-line: max-line-length
-  constructor(public router: Router, private afs: AngularFirestore, private users: UsersService, private alertCtrl: AlertController, private keyboard: Keyboard) {
+  constructor(public router: Router, private afs: AngularFirestore, private users: UsersService, private alertCtrl: AlertController) {
 
   }
 
@@ -106,5 +106,5 @@ export class AddSkillsPage implements OnInit {
     window.location.reload();
     this.router.navigate(['tabs/info']);
   }
-  
+
 }

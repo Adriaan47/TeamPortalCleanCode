@@ -1,12 +1,6 @@
-import 'bootstrap';
-import { catchError, map } from 'rxjs/operators';
 import { UsersService } from '../services/users.service';
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { AlertController, PopoverController } from '@ionic/angular';
-import { Users } from '../services/users.interface';
-import { DataService } from '../services/data.service';
 import { Subject, combineLatest } from 'rxjs';
 
 
