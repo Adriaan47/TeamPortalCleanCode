@@ -8,51 +8,51 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'Profile',
+        path: 'profile',
         children: [
           {
             path: '',
-            loadChildren: '../Profile/tab1.module#Tab1PageModule'
+            loadChildren: '../profile/profile.module#ProfilePageModule'
           }
         ]
       },
       {
-        path: 'Projects',
+        path: 'projects',
         children: [
           {
             path: '',
-            loadChildren: '../Projects/tab2.module#Tab2PageModule'
+            loadChildren: '../projects/projects.module#ProjectsPageModule'
           }
         ]
       },
       {
-        path: 'Skills',
+        path: 'skills',
         children: [
           {
             path: '',
-            loadChildren: '../Skills/tab3.module#Tab3PageModule'
+            loadChildren: '../skills/skills.module#SkillsPageModule'
           }
         ]
       },
       {
-        path: 'SearchMembers',
+        path: 'search-members',
         children: [
           {
             path: '',
-            loadChildren: '../SearchMembers/tab4.module#Tab4PageModule'
+            loadChildren: '../search-members/search-members.module#SearchMembersPageModule'
           }
         ]
       },
       {
         path: '',
-        redirectTo: '/tabs/Profile',
+        redirectTo: '/tabs/profile',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/Profile',
+    redirectTo: '/tabs/profile',
     pathMatch: 'full'
   }
 ];

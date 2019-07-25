@@ -4,23 +4,25 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { flatMap } from 'rxjs/operators';
 
+
 @Component({
-  selector: 'app-tab2',
-  templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss']
+  selector: 'app-projects',
+  templateUrl: './projects.page.html',
+  styleUrls: ['./projects.page.scss'],
 })
 export class ProjectsPage implements OnInit {
   information: any[];
   automaticClose = false;
+
 
   constructor(
     private alertCtrl: AlertController,
     public router: Router,
     private http: HttpClient, ) {
 
-    this.http.get('assets/information.json').subscribe(res => {
-      this.information = res['data'];
-      this.information[0].open = false;
+    this.http.get('project-info/information.json').subscribe(res => {
+    this.information = res['data'];
+    this.information[0].open = false;
     });
   }
 
@@ -69,6 +71,7 @@ export class ProjectsPage implements OnInit {
     this.information[index].children[childIndex].open = !this.information[index].children[childIndex].open;
 
   }
+
 
 
 }
