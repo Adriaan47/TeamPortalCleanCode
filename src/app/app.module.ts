@@ -14,7 +14,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { HttpModule } from '@angular/http';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AuthService } from './services/auth.service';
+// import { AuthService } from './services/auth.service';
 import { ShareModule } from './services/share.module';
 import { UsersService } from './services/users.service';
 // import { NotifiticationsComponent } from './info/notifitications/notifitications.component';
@@ -62,7 +62,7 @@ import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage';
     // SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     UsersService,
-    AuthService,
+    // AuthService,
     AngularFirestore,
     UsersService,
     { provide: StorageBucket, useValue: 'demoproject-8b1fa.appspot.com' }
