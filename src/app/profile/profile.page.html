@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-icon name="md-create" id="editProfile" slot="end" size="large" routerLink="tabs/edit-profile"></ion-icon>
+    <ion-icon name="md-create" id="editProfile" slot="end" size="large" routerLink="/edit-profile"></ion-icon>
     <ion-buttons slot="start">
       <ion-menu-button autoHide="false" color="dark"></ion-menu-button>
     </ion-buttons>
@@ -20,18 +20,15 @@
 
       <ion-thumbnail class="IncreaseHeight" slot="start">
         <ion-avatar class="item item-avatar">
-          <img src="{{ data.avatar }}">
+          <img src="{{ data }}">
         </ion-avatar>
       </ion-thumbnail>
       <ion-label class="nickname">
         <ion-label class="FontSize1">Nickname & Surname</ion-label>
-        <ion-input class="ReduceHeight" disable="true" readonly="true" [(ngModel)]="name" placeholder=' '>
+        <ion-input class="ReduceHeight" disable="true" readonly="true" placeholder=' '>
           {{res.name }} {{res.surname }}
         </ion-input>
       </ion-label>
-
-
-
 
     </ion-item>
 
@@ -40,7 +37,7 @@
       <div>
         <ion-item>
           <ion-label class="FontSize" position="floating">Enterprise ID</ion-label>
-          <ion-input disable="false" color="dark" placeholder=''>{{res.name | lowercase}}.{{res.surname | lowercase}}
+          <ion-input disable="false" readonly color="dark" placeholder=''>{{res.eid}}
           </ion-input>
         </ion-item>
       </div>
@@ -75,16 +72,23 @@
       <div class="profile-info">
         <ion-item *ngIf="res">
           <ion-label class="FontSize" position="floating">Email</ion-label>
-          <ion-input disable="true" placeholder=''>{{ res.email }}</ion-input>
+          <ion-input disable="true" readonly placeholder=''>{{ res.email }}</ion-input>
         </ion-item>
       </div>
 
-      <!-- <div class="profile-info">
+      <div class="profile-info">
+          <ion-item *ngIf="res">
+            <ion-label class="FontSize" position="floating">Nickname</ion-label>
+            <ion-input disable="true" placeholder=''>{{ res.nickname }}</ion-input>
+          </ion-item>
+        </div>
+
+      <div class="profile-info">
           <ion-item *ngIf="res">
             <ion-label class="FontSize" position="floating">Birth date</ion-label>
             <ion-input disable="true" placeholder=''>{{ res.birthday }}</ion-input>
           </ion-item>
-        </div> -->
+        </div>
 
     </div>
 

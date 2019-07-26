@@ -86,7 +86,7 @@ export class EditProfilePage implements OnInit {
       nickname: this.nickname,
     });
 
-    this.router.navigate(['/tabs/profile']);
+    this.router.navigate(['/profile']);
   }
 
   async presentAlert(title: string, content: string) {
@@ -109,7 +109,7 @@ export class EditProfilePage implements OnInit {
         {
           text: 'OK',
           handler: () => {
-            this.router.navigate(['/tabs/profile']);
+            this.router.navigate(['/profile']);
             this.refresh();
 
           }
@@ -135,7 +135,7 @@ export class EditProfilePage implements OnInit {
         }, {
           text: 'Yes',
           handler: () => {
-            this.router.navigate(['tabs/profile']);
+            this.router.navigate(['/profile']);
           }
         }
       ]

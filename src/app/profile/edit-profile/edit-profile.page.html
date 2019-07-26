@@ -97,6 +97,20 @@
 
           </div>
         </div>
+
+        <div class="form-group">
+
+            <ion-label class="FontSize" position="floating" for="First_name">Date of birth</ion-label>
+            <ion-input type="text" class="form-control" id="txtDOB" required [(ngModel)]="birthDate" name="birthDate"
+              #First_name="ngModel"></ion-input>
+  
+            <div [hidden]="First_name.valid || First_name.pristine" class="alert-danger">
+  
+              Nickname is required
+  
+            </div>
+          </div>
+        
       </form>
       <ion-item slot="end" lines="none">
         <ion-button style="text-transform: none;" slot="end" id="buttonColor" shape="square" slot="end"

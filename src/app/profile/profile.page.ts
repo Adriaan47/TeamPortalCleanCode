@@ -33,18 +33,13 @@ export class ProfilePage implements OnInit {
     this.users.getDatas(this.userId).subscribe((res) => {
       this.res = res;
     });
-
-  }
-
-  getDp() {
-    this.users.getProfilePicture(this.users.getUID()).subscribe((data) => {
-      this.data = data.avatar;
+    this.users.getProfilePicture(this.userId).subscribe((prof) => {
+      this.data = prof.avatar;
     });
   }
 
-
   edit() {
-    this.router.navigate(['/tabs/profile']);
+    this.router.navigate(['edit-profile']);
   }
 
   async presentAlertConfirm() {
