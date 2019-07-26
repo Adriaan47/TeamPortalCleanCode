@@ -20,6 +20,7 @@
     
 
     <div *ngIf="data.children && data.open">
+      
       <ion-list *ngFor="let child of data.children; let j = index;" lines="none" class="child-list">
         <ion-item class="background" tappable (click)="toogleItem(i, j)" *ngIf="child.children"
           [ngClass]="{'child-active' : child.open, 'child': !child.open}">
@@ -30,12 +31,12 @@
           </ion-label>
         </ion-item>
 
-        <app-product [product]="child" *ngIf="!child.children"></app-product>
-
+        <app-project-info [product]="child" *ngIf="!child.children"></app-project-info>
         <ion-list *ngIf="child.children && child.open" class="product-list" lines="none">
-          <app-product [product]="product" *ngFor="let product of child.children"></app-product>
+          <app-project-info [product]="product" *ngFor="let product of child.children"></app-project-info>
         </ion-list>
       </ion-list>
     </div>
+
   </ion-list>
 </ion-content>

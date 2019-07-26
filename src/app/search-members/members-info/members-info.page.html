@@ -12,7 +12,7 @@
 
           <ion-avatar class="item item-avatar">
 
-              <img src="{{ dp.avatar }}"></ion-avatar>
+              <img [src]="dp"></ion-avatar>
 
       </ion-thumbnail>
       <!-- <ion-row style="height: 20px"></ion-row> -->
@@ -22,7 +22,7 @@
       <ion-label class="nickname">
           <ion-label class="FontSize1" position="floating">Nickname & Surname</ion-label>
           <ion-input class="ReduceHeight" disable="true" readonly="true" [(ngModel)]="name" placeholder=''>
-              {{res.nickname | titlecase }} {{res.surname | titlecase}}</ion-input>
+              {{res.nickname }} {{res.surname }}</ion-input>
       </ion-label>
   </ion-item>
 
@@ -32,7 +32,7 @@
       <div>
           <ion-item lines="none">
               <ion-label class="FontSize" position="floating">Enterprise ID</ion-label>
-              <ion-input disable="false" color="dark" placeholder=''>{{res.name | lowercase}}.{{res.surname | lowercase}}
+              <ion-input disable="false" color="dark" placeholder=''>{{res.eid}}
               </ion-input>
           </ion-item>
       </div>
@@ -40,14 +40,14 @@
       <div>
           <ion-item lines="none">
               <ion-label class="FontSize" position="floating">First name(s)</ion-label>
-              <ion-input disable="false" color="dark" placeholder=''>{{res.name | titlecase}}</ion-input>
+              <ion-input disable="false" color="dark" placeholder=''>{{res.name}}</ion-input>
           </ion-item>
       </div>
 
       <div>
           <ion-item lines="none">
               <ion-label class="FontSize" position="floating">Surname</ion-label>
-              <ion-input disable="false" color="dark" placeholder=''>{{res.surname | titlecase}}</ion-input>
+              <ion-input disable="false" color="dark" placeholder=''>{{res.surname}}</ion-input>
           </ion-item>
       </div>
 

@@ -135,7 +135,7 @@ export class EditProfilePage implements OnInit {
         }, {
           text: 'Yes',
           handler: () => {
-            this.router.navigate(['/profile']);
+            this.router.navigate(['/tabs']);
           }
         }
       ]
