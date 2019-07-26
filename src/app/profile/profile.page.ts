@@ -16,7 +16,7 @@ export class ProfilePage implements OnInit {
   sub;
   res: any;
   data: any;
-
+  userId: string;
   constructor(
     public router: Router,
     private afs: AngularFirestore,
@@ -25,26 +25,20 @@ export class ProfilePage implements OnInit {
     private menu: MenuController,
     private http: HttpClient,
     private alertCtrl: AlertController) {
-    this.mainuser = afs.doc(`users/${this.users.getUID()}`);
-    this.sub = this.mainuser.valueChanges().subscribe(event => {
-      this.profilePic = event.profilePic;
-    });
-    this.getDp();
   }
 
 
   ngOnInit() {
-    this.users.getMember(this.users.getUID()).subscribe((res) => {
+    this.userId = this.users.getUID();
+    this.users.getDatas(this.userId).subscribe((res) => {
       this.res = res;
-      console.log(res);
     });
 
   }
 
   getDp() {
     this.users.getProfilePicture(this.users.getUID()).subscribe((data) => {
-      this.data = data;
-      console.log(data);
+      this.data = data.avatar;
     });
   }
 

@@ -37,8 +37,9 @@ export class UsersService {
   sid: string;
   skillID: string;
   user$: Observable<any>;
+  userData: any;
   private url = 'https://demoproject-8b1fa.appspot.com/users';
-  private skillUrl = `https://demoproject-8b1fa.appspot.com/users/skills`;
+  private skillUrl = `https://demoproject-8b1fa.appspot.com/skills`;
 
 
   constructor(
@@ -51,8 +52,13 @@ export class UsersService {
     this.user$ = this.afAuth.authState.pipe(
       switchMap(curUser => {
         if (curUser) {
+          this.userData = curUser;
+          localStorage.setItem('user', JSON.stringify(this.userData));
+          JSON.parse(localStorage.getItem('user'));
           return this.afs.doc<AuthMember>(`users/${curUser.uid}`).valueChanges();
         } else {
+          localStorage.setItem('user', null);
+          JSON.parse(localStorage.getItem('user'));
           return of(null);
         }
       })
@@ -83,7 +89,7 @@ export class UsersService {
 
 
   getCurrentUserSkill(uid: string, sid: string): Observable<Skills> {
-    return this.http.get<Skills>(`https://demoproject-8b1fa.appspot.com/users/skills/${uid}/skill/${sid}`);
+    return this.http.get<Skills>(`${this.skillUrl}/${uid}/skill/${sid}`);
   }
 
   getData(): Observable<object> {
@@ -91,32 +97,27 @@ export class UsersService {
   }
 
   getProfilePicture(id: string): Observable<Pictures> {
-    return this.http.get<Pictures>(`https://demoproject-8b1fa.appspot.com/users/${id}/pictures`);
+    return this.http.get<Pictures>(`${this.url}/${id}/pictures`);
   }
 
   getDatas(id: string): Observable<UserPublic> {
-    return this.http.get<UserPublic>(`https://demoproject-8b1fa.appspot.com/users/${id}/get-public`);
+    return this.http.get<UserPublic>(`${this.url}/${id}/get-public`);
   }
 
   getMember(id: string) {
-    return this.http.get(`https://demoproject-8b1fa.appspot.com/users/${id}/member`);
+    return this.http.get(`${this.url}/${id}/member`);
   }
 
-  getSkills(id: string): Observable<Skills> {
-    return this.http.get<Skills>(`https://demoproject-8b1fa.appspot.com/skills/${id}`);
+  getSkills(id: string): Observable<Skills[]> {
+    return this.http.get<Skills[]>(`${this.skillUrl}/${id}`);
   }
 
   getSkillID(id: string, sid: string): Observable<Skills> {
-    return this.http.get<Skills>(`https://demoproject-8b1fa.appspot.com/skills/${id}/skill/${sid}`);
+    return this.http.get<Skills>(`${this.skillUrl}/${id}/skill/${sid}`);
   }
 
   reAuth(username: string, password: string) {
     return this.afAuth.auth.currentUser.reauthenticateWithCredential(auth.EmailAuthProvider.credential(username, password));
-  }
-
-
-  updateEmail(newemail: string) {
-    return this.afAuth.auth.currentUser.updateEmail(newemail);
   }
 
 

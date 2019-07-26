@@ -99,19 +99,6 @@ export class EditProfilePage implements OnInit {
     await alert.present();
   }
 
-  async updateDetails() {
-
-    if (this.username !== this.users.getUsername()) {
-      await this.users.updateEmail(this.username);
-      this.mainuser.update({
-        username: this.username,
-      });
-    }
-
-    // await this.presentAlert('Update success', 'Your profile was updated');
-
-    // this.router.navigate(['/tabs/profile']);
-  }
   async presentAlertConfirm() {
     // this.router.navigate(['/tabs/profile']);
     // }
