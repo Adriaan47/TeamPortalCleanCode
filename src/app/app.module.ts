@@ -12,6 +12,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { HttpModule } from '@angular/http';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+// import { AuthService } from './services/auth.service';
 import { ShareModule } from './services/share.module';
 import { UsersService } from './services/users.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -44,6 +45,7 @@ import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage';
     StatusBar,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     UsersService,
+    // AuthService,
     AngularFirestore,
     UsersService,
     { provide: StorageBucket, useValue: 'demoproject-8b1fa.appspot.com' }

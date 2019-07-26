@@ -32,19 +32,14 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UsersService {
-    isAuthenticated() {
-        throw new Error("Method not implemented.");
-    }
   public user: user;
   id: string;
   sid: string;
   skillID: string;
   user$: Observable<any>;
+  private url = 'https://demoproject-8b1fa.appspot.com/users';
+  private skillUrl = `https://demoproject-8b1fa.appspot.com/users/skills`;
 
-  // tslint:disable-next-line: no-inferrable-types
-  private url: string = 'https://demoproject-8b1fa.appspot.com/users';
-  // tslint:disable-next-line: no-inferrable-types
-  private skillUrl: string = `https://demoproject-8b1fa.appspot.com/users/skills`;
 
   constructor(
     private afAuth: AngularFireAuth,
