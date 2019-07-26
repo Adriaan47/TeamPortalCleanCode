@@ -27,14 +27,12 @@ export class UpdateSkillsPage implements OnInit {
 
   constructor(
     private popoverController: PopoverController,
-    private http: Http,
     public router: Router,
     private afs: AngularFirestore,
     private users: UsersService,
     private route: ActivatedRoute,
     private alertCtrl: AlertController,
   ) {
-    this.getSkills();
   }
 
 
@@ -44,20 +42,15 @@ export class UpdateSkillsPage implements OnInit {
 
   ngOnInit() {
     this.id = this.users.getUID();
-    console.log(this.id);
+    this.skillID = this.route.snapshot.paramMap.get('id');
+    this.skills = this.users.getCurrentUserSkill(this.id, this.skillID);
   }
 
-  getSkills() {
-    this.users.getSkillID(this.users.getUID(), 'html').subscribe(skills => this.skills = skills);
-  }
 
   go() {
     this.router.navigate(['/tabs/profile']);
   }
 
-  getUserSkill(uid: string, id) {
-    this.users.getCurrentUserSkill(this.users.getUID(), id);
 
-  }
 
 }

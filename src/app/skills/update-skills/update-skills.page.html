@@ -9,9 +9,6 @@
   
   </ion-item>
 
-  <form>
-    
-  </form>
   <ion-list *ngIf = "skills">
 
         <ion-item>
@@ -47,8 +44,8 @@
     
   </ion-list>
   <ion-item>
-    <!-- <ion-button slot="start" style="text-transform: none;" size="small" slot="start" color="danger">Delete</ion-button> -->
-    <!-- <ion-button slot="end" style="text-transform: none;" id="buttonColor" size="meduim">Update</ion-button> -->
+    <ion-button slot="start" style="text-transform: none;" size="small" slot="start" color="danger">Delete</ion-button> 
+    <ion-button slot="end" style="text-transform: none;" id="buttonColor" size="meduim">Update</ion-button>
     <ion-icon slot="end" color="dark" name="md-create" routerLink="/about-skill" (click)="DismissClick()"></ion-icon>
   </ion-item>
 </ion-list>
