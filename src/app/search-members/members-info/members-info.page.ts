@@ -28,13 +28,11 @@ export class MembersInfoPage implements OnInit {
 
   ngOnInit() {
     this.userID = this.route.snapshot.paramMap.get('id');
-
     this.users.getDatas(this.userID).subscribe(user => {
       this.res = user;
     });
     this.users.getProfilePicture(this.userID).subscribe(userAv => {
       this.dp = userAv.avatar;
-      console.log(this.dp);
     });
   }
 
