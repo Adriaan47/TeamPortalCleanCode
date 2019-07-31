@@ -59,8 +59,8 @@ export class AppComponent {
   openEnd() {
     this.menu.open('end');
   }
-  // reset() {
-  //   const userEmail = this.afAuth.auth.currentUser.email;
-  //   this.userServ.resetPassword(userEmail)
-  // }
+  reset() {
+  const userEmail = this.afAuth.auth.currentUser.email;
+  this.userServ.resetPassword(userEmail)
+  }
 }
