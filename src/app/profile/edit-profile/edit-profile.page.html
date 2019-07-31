@@ -17,9 +17,9 @@
     <input #fileBtn name="image" hidden="true" #image class="filebtn" />
 
 
-    <ion-label class="nickname">
-      <ion-label class="FontSize1">First name & Surname</ion-label>
-      <ion-input class="ReduceHeight" placeholder=" ">{{name}} {{surname}}
+    <ion-label *ngIf="Public" class="nickname">
+      <ion-label class="FontSize1">Nickname & Surname</ion-label>
+      <ion-input class="ReduceHeight" placeholder=" ">{{Public.nickname}} {{Public.surname}}
       </ion-input>
     </ion-label>
 
@@ -33,26 +33,23 @@
 
         <div class="form-group">
 
-          <ion-label class="FontSize" position="floating">First name(s)</ion-label>
-          <ion-input type="text" class="form-control" id="name" required [(ngModel)]="name" name="name"
-            #First_name="ngModel">
+          <ion-label class="FontSize" for="name" position="floating">First name(s)</ion-label>
+          <ion-input type="text" class="form-control" id="name" required [(ngModel)]="formValue.name" name="name"
+            #name="ngModel">
           </ion-input>
-
-          <div [hidden]="First_name.valid || First_name.pristine" class="alert-danger">
-
+          <div [hidden]="name.valid || name.pristine" class="alert-danger">
             First name(s) is required
-
           </div>
         </div>
 
 
         <div class="form-group">
 
-          <ion-label class="FontSize" position="floating" for="First_name">Surname</ion-label>
-          <ion-input type="text" class="form-control" id="surname" required [(ngModel)]="surname" name="surname"
-            #First_name="ngModel"></ion-input>
+          <ion-label class="FontSize" position="floating" for="surname">Surname</ion-label>
+          <ion-input type="text" class="form-control" id="surname" required [(ngModel)]="formValue.surname"
+            name="surname" #surname="ngModel"></ion-input>
 
-          <div [hidden]="First_name.valid || First_name.pristine" class="alert-danger">
+          <div [hidden]="surname.valid || surname.pristine" class="alert-danger">
 
             Surname is required
 
@@ -61,11 +58,11 @@
 
         <div class="form-group">
 
-          <ion-label class="FontSize" position="floating" for="First_name">Career level</ion-label>
-          <ion-input class="form-control" id="careerLevel" required [(ngModel)]="careerLevel" name="careerLevel"
-            #First_name="ngModel"></ion-input>
+          <ion-label class="FontSize" position="floating" for="careerLevel">Career level</ion-label>
+          <ion-input class="form-control" id="careerLevel" required [(ngModel)]="formValue.careerLevel"
+            name="careerLevel" #careerLevel="ngModel"></ion-input>
 
-          <div [hidden]="First_name.valid || First_name.pristine" class="alert-danger">
+          <div [hidden]="careerLevel.valid || careerLevel.pristine" class="alert-danger">
 
             Career level is required
 
@@ -74,11 +71,11 @@
 
         <div class="form-group">
 
-          <ion-label class="FontSize" position="floating" for="First_name">Mobile number</ion-label>
-          <ion-input type="text" class="form-control" id="mobile" required [(ngModel)]="mobile" name="mobile"
-            #First_name="ngModel"></ion-input>
+          <ion-label class="FontSize" position="floating" for="mobile">Mobile number</ion-label>
+          <ion-input type="text" class="form-control" id="mobile" required [(ngModel)]="formValue.mobile" name="mobile"
+            #mobile="ngModel"></ion-input>
 
-          <div [hidden]="First_name.valid || First_name.pristine" class="alert-danger">
+          <div [hidden]="mobile.valid || mobile.pristine" class="alert-danger">
 
             Mobile number is required
 
@@ -87,11 +84,11 @@
 
         <div class="form-group">
 
-          <ion-label class="FontSize" position="floating" for="First_name">Nickname</ion-label>
-          <ion-input type="text" class="form-control" id="nickname" required [(ngModel)]="nickname" name="nickname"
-            #First_name="ngModel"></ion-input>
+          <ion-label class="FontSize" position="floating" for="nickname">Nickname</ion-label>
+          <ion-input type="text" class="form-control" id="nickname" required [(ngModel)]="formValue.nickname"
+            name="nickname" #nickname="ngModel"></ion-input>
 
-          <div [hidden]="First_name.valid || First_name.pristine" class="alert-danger">
+          <div [hidden]="nickname.valid || nickname.pristine" class="alert-danger">
 
             Nickname is required
 
@@ -100,25 +97,25 @@
 
         <div class="form-group">
 
-            <ion-label class="FontSize" position="floating" for="First_name">Date of birth</ion-label>
-            <ion-input type="text" class="form-control" id="txtDOB" required name="birthDate"
-              ></ion-input>
-  
-            <div [hidden]="First_name.valid || First_name.pristine" class="alert-danger">
-  
-              Nickname is required
-  
-            </div>
+          <ion-label class="FontSize" position="floating" for="birthDate">Date of birth</ion-label>
+          <ion-input type="text" class="form-control" id="txtDOB" required [(ngModel)]="formValue.birthDate"
+            name="birthDate" #birthDate="ngModel"></ion-input>
+
+          <div [hidden]="birthDate.valid || birthDate.pristine" class="alert-danger">
+
+            Birth date is required
+
           </div>
-        
+        </div>
+
+        <ion-item slot="end" lines="none">
+          <ion-button style="text-transform: none;" slot="end" id="buttonColor" shape="square" slot="end" size="medium"
+            (click)="updateDetails(heroForm)" [disabled]="!heroForm.valid">
+            Update
+          </ion-button>
+        </ion-item>
       </form>
-      <ion-item slot="end" lines="none">
-        <ion-button style="text-transform: none;" slot="end" id="buttonColor" shape="square" slot="end"
-          (click)="presentAlertConfirm()" (click)="createPost()" size="medium" (click)="updateDetails()"
-          [disabled]="!heroForm.valid">
-          Update
-        </ion-button>
-      </ion-item>
+
     </div>
   </ion-list>
 

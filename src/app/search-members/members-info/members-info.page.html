@@ -64,5 +64,17 @@
               <ion-input disable="false" color="dark" placeholder=''>{{res.email}}</ion-input>
           </ion-item>
       </div>
+      <div *ngIf="res.showMobile === true">
+        <ion-item lines="none">
+            <ion-label class="FontSize" position="floating">Mobile</ion-label>
+            <ion-input disable="false" color="dark" placeholder=''>{{res.mobile}}</ion-input>
+        </ion-item>
+    </div>
+    <div *ngIf="res.showDOB === true">
+        <ion-item lines="none">
+            <ion-label class="FontSize" position="floating">Birth date</ion-label>
+            <ion-input disable="false" color="dark" placeholder=''>{{res.birthDate}}</ion-input>
+        </ion-item>
+    </div>
   </div>
  </ion-content>

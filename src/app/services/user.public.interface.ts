@@ -8,4 +8,5 @@ export interface UserPublic {
     careerLevel: number;
     mobile: string;
     birthDate: Date;
+    eid: string;
 }

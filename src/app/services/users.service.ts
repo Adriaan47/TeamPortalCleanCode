@@ -92,6 +92,10 @@ export class UsersService {
     return this.http.get<Skills>(`${this.skillUrl}/${uid}/skill/${sid}`);
   }
 
+  updateSkill(uId: string, idSkill: string, skill: Skills) {
+    return this.http.put(`${this.skillUrl}/${uId}/update/${idSkill}`, skill, httpOptions);
+  }
+
   getData(): Observable<object> {
     return this.http.get(this.url);
   }
@@ -103,7 +107,9 @@ export class UsersService {
   getDatas(id: string): Observable<UserPublic> {
     return this.http.get<UserPublic>(`${this.url}/${id}/get-public`);
   }
-
+  updatePublic(id: string, publicDetails: UserPublic) {
+    return this.http.put(`${this.url}/${id}/public`, publicDetails, httpOptions);
+  }
   getMember(id: string) {
     return this.http.get(`${this.url}/${id}/member`);
   }
@@ -139,9 +145,6 @@ export class UsersService {
     }
   }
   // get profile picture
-  getPictures(id: string): Observable<Pictures> {
-    return this.http.get<Pictures>(`https://demoproject-8b1fa.appspot.com/users/${id}/pictures`);
-  }
 
   notifcation(msg: string, type: string) {
     return this.toastController.create({

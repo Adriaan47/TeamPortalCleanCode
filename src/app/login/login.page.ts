@@ -36,7 +36,7 @@ loginUser: any = {};
         color: 'success'
       });
       toast.present();
-      this.router.navigate(['/profile']);
+      this.router.navigate(['tabs/profile']);
     }).catch(async () => {
       const toast = await this.toastController.create({
         message: 'Incorrect password or email!.',

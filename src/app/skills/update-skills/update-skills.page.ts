@@ -47,6 +47,30 @@ export class UpdateSkillsPage implements OnInit {
   }
 
 
+  async presentAlertBack() {
+    const alert = await this.alertCtrl.create({
+      header: 'Discard changes?',
+      message: 'Any unsaved work will be discarded.',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel: ?');
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+            this.router.navigate(['tabs/skills']);
+          }
+        }
+      ]
+      // tslint:disable-next-line: semicolon
+    });
+    await alert.present();
+  }
+
   go() {
     this.router.navigate(['/tabs/profile']);
   }

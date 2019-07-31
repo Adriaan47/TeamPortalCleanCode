@@ -17,7 +17,7 @@ const routes: Routes = [
           {
             path: 'edit-profile',
             loadChildren:
-              './profile/edit-profile/edit-profile.module#EditProfilePageModule'
+              '../profile/edit-profile/edit-profile.module#EditProfilePageModule'
           }
         ]
       },
@@ -31,7 +31,7 @@ const routes: Routes = [
           {
             path: 'project-info',
             loadChildren:
-              './projects/project-info/project-info.module#ProjectInfoPageModule'
+              '../projects/project-info/project-info.module#ProjectInfoPageModule'
           }
         ]
       },

@@ -42,7 +42,7 @@ export class AddSkillsPage implements OnInit {
         }, {
           text: 'Yes',
           handler: () => {
-            this.router.navigate(['/login']);
+            this.router.navigate(['tabs/login']);
           }
         }
       ]
@@ -59,8 +59,7 @@ export class AddSkillsPage implements OnInit {
         {
           text: 'OK',
           handler: () => {
-            this.router.navigate(['/tabs/info']);
-            this.refresh();
+            this.router.navigate(['/tabs/skills']);
           }
         }
       ]
@@ -83,7 +82,7 @@ export class AddSkillsPage implements OnInit {
         }, {
           text: 'Yes',
           handler: () => {
-            this.router.navigate(['tabs/info']);
+            this.router.navigate(['tabs/skills']);
           }
         }
       ]
@@ -102,9 +101,5 @@ export class AddSkillsPage implements OnInit {
     });
   }
 
-  refresh(): void {
-    window.location.reload();
-    this.router.navigate(['tabs/info']);
-  }
-  
+
 }

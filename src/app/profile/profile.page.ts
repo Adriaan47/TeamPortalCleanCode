@@ -4,6 +4,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { Router } from '@angular/router';
 import { AlertController, MenuController } from '@ionic/angular';
 import { UsersService } from '../services/users.service';
+import { getLocaleDateFormat } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
@@ -29,6 +30,7 @@ export class ProfilePage implements OnInit {
 
 
   ngOnInit() {
+
     this.userId = this.users.getUID();
     this.users.getDatas(this.userId).subscribe((res) => {
       this.res = res;
@@ -39,7 +41,7 @@ export class ProfilePage implements OnInit {
   }
 
   edit() {
-    this.router.navigate(['edit-profile']);
+    this.router.navigate(['tabs/profile/edit-profile']);
   }
 
   async presentAlertConfirm() {

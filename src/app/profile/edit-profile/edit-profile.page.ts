@@ -6,6 +6,8 @@ import { AlertController } from '@ionic/angular';
 import { UsersService } from '../../services/users.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
+import { NgForm, NgControl } from '@angular/forms';
+import { UserPublic } from '../../services/user.public.interface';
 
 @Component({
   selector: 'app-edit-profile',
@@ -25,30 +27,17 @@ export class EditProfilePage implements OnInit {
     // tslint:disable-next-line:no-shadowed-variable
     public alertCtrl: AlertController) {
 
-    this.mainuser = afs.doc(`users/${this.users.getUID()}`);
-    this.sub = this.mainuser.valueChanges().subscribe(event => {
-      this.profilePic = event.profilePic;
-      this.email = event.email;
-      this.name = event.name;
-      this.surname = event.surname;
-      this.careerLevel = event.careerLevel;
-      this.mobile = event.mobile;
-      this.avatar = event.avatar;
-      this.nickname = event.nickname;
-    });
+
 
   }
 
   mainuser: AngularFirestoreDocument;
   sub;
+  profilePic: any;
+  userID: any;
+  avatar: any;
 
-  email: any;
-  name: string;
-  surname: string;
-  careerLevel: string;
-  mobile: string;
-  avatar: string;
-  nickname: string;
+
 
   // tslint:disable-next-line: no-inferrable-types
   busy: boolean = false;
@@ -56,37 +45,59 @@ export class EditProfilePage implements OnInit {
   @ViewChild('image') fileBtn: {
     nativeElement: HTMLInputElement
   };
-
+  Public: UserPublic;
   username: any;
-  profilePic: any;
+
   uid: any;
   // tslint:disable-next-line:member-ordering
   imgURL: any;
   selectedIMG: File = null;
+  formValue: any = {
+    name: '',
+    surname: '',
+    careerLevel: '',
+    mobile: '',
+    email: '',
+    nickname: '',
+    birthDay: '',
+    eid: '',
+  };
 
   ngOnInit() {
+    this.userID = this.users.getUID();
+    this.users.getDatas(this.userID).subscribe(user => {
+      this.Public = user;
+      this.setForm();
+    });
+    this.users.getProfilePicture(this.userID).subscribe(avatar => {
+      this.avatar = avatar.avatar;
+    });
+
   }
 
   // tslint:disable-next-line: use-life-cycle-interface
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
+  setForm() {
+    this.formValue = {
+      name: this.Public.name,
+      surname: this.Public.surname,
+      careerLevel: this.Public.careerLevel,
+      mobile: this.Public.mobile,
+      email: this.Public.email,
+      nickname: this.Public.nickname,
+      birthDate: this.Public.birthDate,
+      eid: this.Public.eid,
+    };
+  }
 
-
-  async createPost() {
-
-    this.busy = true;
-    this.afs.doc(`users/${this.users.getUID()}`).update({
-      name: this.name,
-      surname: this.surname,
-      careerLevel: this.careerLevel,
-      email: this.email,
-      mobile: this.mobile,
-      avatar: this.avatar,
-      nickname: this.nickname,
+  updateDetails(details: NgForm) {
+    this.users.updatePublic(this.userID, details.value).subscribe(() => {
+      this.presentAlertConfirm();
+    }, error => {
+      this.presentAlert('Error occured', error.message);
     });
-
-    this.router.navigate(['/profile']);
   }
 
   async presentAlert(title: string, content: string) {
@@ -109,9 +120,7 @@ export class EditProfilePage implements OnInit {
         {
           text: 'OK',
           handler: () => {
-            this.router.navigate(['/profile']);
-            this.refresh();
-
+            this.router.navigate(['tabs/profile']);
           }
 
         }
@@ -135,7 +144,7 @@ export class EditProfilePage implements OnInit {
         }, {
           text: 'Yes',
           handler: () => {
-            this.router.navigate(['/tabs']);
+            this.router.navigate(['tabs/profile']);
           }
         }
       ]
@@ -144,12 +153,5 @@ export class EditProfilePage implements OnInit {
     await alert.present();
   }
 
-
-  updateProfilePicture() {
-    this.fileBtn.nativeElement.click();
-  }
-
-  refresh(): void {
-    window.location.reload();
-  }
 }
+
