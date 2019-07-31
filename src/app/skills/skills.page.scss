@@ -1,7 +1,9 @@
 ion-content.background{
   --background: -webkit-linear-gradient(left, #dfdfeb, #e02f9c);
    }
-
+.background{
+  margin-bottom: -30px;
+}
   #buttonColor{
       --background: #960584;
   }
@@ -72,7 +74,13 @@ a:not([href]):not([tabindex]) {
 
 }.grey{
 --background: rgb(243, 242, 242);
+font-size: 16px;
 }
+.grey1{
+  --background: rgb(243, 242, 242);
+  color: rgb(74, 130, 235);
+  font-size: 16px;
+  }
 
 .sc-ion-label-ios-h {
 --color: cornflowerblue;

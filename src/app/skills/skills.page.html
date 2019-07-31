@@ -17,10 +17,10 @@
             <div id="accordion">
                 <ion-list class="background" *ngFor="let skil of skills; index as i">
 
-                    <ion-item lines="none" class="grey">
+                    <ion-item lines="none" class="grey1">
                         <ion-label data-toggle="collapse" attr.data-target="#collapse{{ i }}" aria-expanded="false"
                             aria-controls="collapseOne">{{ skil.name }}</ion-label>
-                        <ion-note slot="end" color="primary">{{ skil.level }}</ion-note>
+                        <ion-note class="grey" slot="end" color="primary">{{ skil.level }}</ion-note>
                     </ion-item>
 
 
