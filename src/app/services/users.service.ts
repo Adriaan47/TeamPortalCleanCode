@@ -8,8 +8,9 @@ import { Skills } from '../services/skills';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { AuthMember } from '../interfaces/authMember';
-import { ToastController } from '@ionic/angular';
+import { ToastController, AlertController } from '@ionic/angular';
 import { UserPublic } from './user.public.interface';
+
 
 
 // tslint:disable-next-line: class-name
@@ -48,6 +49,7 @@ export class UsersService {
     private afs: AngularFirestore,
     private http: HttpClient,
     public toastController: ToastController,
+    private alertController: AlertController,
   ) { // track current user state
     this.user$ = this.afAuth.authState.pipe(
       switchMap(curUser => {
@@ -154,4 +156,20 @@ export class UsersService {
       position: 'bottom'
     });
   }
-}
+  // Email link to reset password
+  resetPassword(email: string) {
+    return this.afAuth.auth.sendPasswordResetEmail(email).then(() => {
+      this.presentAlert('Password reset', 'Password reset email sent, check your inbox.') 
+    }).catch(error => this.presentAlert('Error occured ', error.message));
+    }
+    async presentAlert(title: string, content: string){
+      const alert = await this.alertController.create({
+        header: title,
+        message: content,
+        buttons: ['OK']
+
+      });
+      await alert.present();
+    }
+  }
+
