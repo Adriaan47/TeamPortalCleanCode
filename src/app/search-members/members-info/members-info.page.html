@@ -1,84 +1,84 @@
 <ion-header>
-  <ion-toolbar>
-      <!-- <ion-icon name="arrow-back" slot="start" size="large" routerLink="/tabs/members"></ion-icon> -->
+    <ion-toolbar>
+        <!-- <ion-icon name="arrow-back" slot="start" size="large" routerLink="/tabs/members"></ion-icon> -->
 
-      <ion-buttons slot="start">
-        <ion-back-button defaultHref="tabs/members"></ion-back-button>
-      </ion-buttons>
-      <ion-title>Member's details</ion-title>
-  </ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="tabs/members"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Member's details</ion-title>
+    </ion-toolbar>
 </ion-header>
 <ion-content padding class="background">
 
 
-  <ion-item lines="none">
-      <ion-thumbnail class="IncreaseHeight" slot="start">
+    <ion-item lines="none">
+        <ion-thumbnail class="IncreaseHeight" slot="start">
 
-          <ion-avatar class="item item-avatar">
+            <ion-avatar class="item item-avatar">
 
-              <img [src]="dp"></ion-avatar>
+                <img [src]="dp"></ion-avatar>
 
-      </ion-thumbnail>
-      <!-- <ion-row style="height: 20px"></ion-row> -->
-
-
-
-      <ion-label *ngIf="(res)" class="nickname">
-          <ion-label class="FontSize1" position="floating">Nickname & Surname</ion-label>
-          <ion-input class="ReduceHeight" disable="true" readonly="true" placeholder=''>
-              {{res.nickname }} {{res.surname }}</ion-input>
-      </ion-label>
-  </ion-item>
+        </ion-thumbnail>
+        <!-- <ion-row style="height: 20px"></ion-row> -->
 
 
 
-  <div *ngIf="(res)">
-      <div>
-          <ion-item lines="none">
-              <ion-label class="FontSize" position="floating">Enterprise ID</ion-label>
-              <ion-input disable="false" color="dark" placeholder=''>{{res.eid}}
-              </ion-input>
-          </ion-item>
-      </div>
+        <ion-label *ngIf="(res)" class="nickname">
+            <ion-label class="FontSize1" position="floating">Nickname & Surname</ion-label>
+            <ion-input class="ReduceHeight" disable="true" readonly="true" placeholder=''>
+                {{res.nickname }} {{res.surname }}</ion-input>
+        </ion-label>
+    </ion-item>
 
-      <div>
-          <ion-item lines="none">
-              <ion-label class="FontSize" position="floating">First name(s)</ion-label>
-              <ion-input disable="false" color="dark" placeholder=''>{{res.name}}</ion-input>
-          </ion-item>
-      </div>
 
-      <div>
-          <ion-item lines="none">
-              <ion-label class="FontSize" position="floating">Surname</ion-label>
-              <ion-input disable="false" color="dark" placeholder=''>{{res.surname}}</ion-input>
-          </ion-item>
-      </div>
 
-      <div>
-          <ion-item lines="none">
-              <ion-label class="FontSize" position="floating">Career level</ion-label>
-              <ion-input disable="false" color="dark" placeholder=''>{{res.careerLevel}}</ion-input>
-          </ion-item>
-      </div>
+    <div *ngIf="(res)">
+        <div>
+            <ion-item lines="none">
+                <ion-label class="FontSize" position="floating">Enterprise ID</ion-label>
+                <ion-input disable="false" readonly color="dark" placeholder=''>{{res.eid}}
+                </ion-input>
+            </ion-item>
+        </div>
 
-      <div>
-          <ion-item lines="none">
-              <ion-label class="FontSize" position="floating">Email</ion-label>
-              <ion-input disable="false" color="dark" placeholder=''>{{res.email}}</ion-input>
-          </ion-item>
-      </div>
-      <div *ngIf="res.showMobile === true">
-        <ion-item lines="none">
-            <ion-label class="FontSize" position="floating">Mobile</ion-label>
-            <ion-input disable="false" color="dark" placeholder=''>{{res.mobile}}</ion-input>
-        </ion-item>
+        <div>
+            <ion-item lines="none">
+                <ion-label class="FontSize" position="floating">First name(s)</ion-label>
+                <ion-input disable="false" readonly color="dark" placeholder=''>{{res.name}}</ion-input>
+            </ion-item>
+        </div>
+
+        <div>
+            <ion-item lines="none">
+                <ion-label class="FontSize" position="floating">Surname</ion-label>
+                <ion-input disable="false" readonly color="dark" placeholder=''>{{res.surname}}</ion-input>
+            </ion-item>
+        </div>
+
+        <div>
+            <ion-item lines="none">
+                <ion-label class="FontSize" position="floating">Career level</ion-label>
+                <ion-input disable="false" readonly color="dark" placeholder=''>{{res.careerLevel}}</ion-input>
+            </ion-item>
+        </div>
+
+        <div>
+            <ion-item lines="none">
+                <ion-label class="FontSize" position="floating">Email</ion-label>
+                <ion-input disable="false" readonly color="dark" placeholder=''>{{res.email}}</ion-input>
+            </ion-item>
+        </div>
+        <div *ngIf="res.showMobile === true">
+            <ion-item lines="none">
+                <ion-label class="FontSize" position="floating">Mobile</ion-label>
+                <ion-input disable="false" readonly color="dark" placeholder=''>{{res.mobile}}</ion-input>
+            </ion-item>
+        </div>
+        <div *ngIf="res.showDOB === true">
+            <ion-item lines="none">
+                <ion-label class="FontSize" position="floating">Birth date</ion-label>
+                <ion-input disable="false" readonly color="dark" placeholder=''>{{res.birthDate}}</ion-input>
+            </ion-item>
+        </div>
     </div>
-    <div *ngIf="res.showDOB === true">
-        <ion-item lines="none">
-            <ion-label class="FontSize" position="floating">Birth date</ion-label>
-            <ion-input disable="false" color="dark" placeholder=''>{{res.birthDate}}</ion-input>
-        </ion-item>
-    </div>
-  </div>
- </ion-content>
+</ion-content>

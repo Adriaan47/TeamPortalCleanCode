@@ -56,7 +56,7 @@ export class EditProfilePage implements OnInit {
     name: '',
     surname: '',
     careerLevel: '',
-    mobile: '',
+    phoneNumber: '',
     email: '',
     nickname: '',
     birthDay: '',
@@ -75,16 +75,16 @@ export class EditProfilePage implements OnInit {
 
   }
 
-  // tslint:disable-next-line: use-life-cycle-interface
-  ngOnDestroy() {
-    this.sub.unsubscribe();
-  }
+  // // tslint:disable-next-line: use-life-cycle-interface
+  // ngOnDestroy() {
+  //   this.sub.unsubscribe();
+  // }
   setForm() {
     this.formValue = {
       name: this.Public.name,
       surname: this.Public.surname,
       careerLevel: this.Public.careerLevel,
-      mobile: this.Public.mobile,
+      phoneNumber: this.Public.phoneNumber,
       email: this.Public.email,
       nickname: this.Public.nickname,
       birthDate: this.Public.birthDate,
@@ -154,4 +154,3 @@ export class EditProfilePage implements OnInit {
   }
 
 }
-

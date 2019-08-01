@@ -59,28 +59,29 @@ ion-title {
 .TopPadding {
   padding-top: 16px;
 }
+.ReduceHeight {
+  height: 35px;
+  --padding-top: 0px;
+  --padding-end: 8px;
+  --padding-bottom: 0px;
+  --padding-start: 0px;
+  font-size: inherit;
+  color: black;
+  margin-left: 10px;
+}
 
 .IncreaseHeight {
   margin-top: 12px;
   margin-bottom: 20px;
 }
 .FontSize1 {
-  font-size: 16px;
+  font-size: 17px;
+  color: rgb(126, 126, 126);
   margin-left: 10px;
-}
-
-.ReduceHeight {
-  height: 35px;
-  --padding-top: 0px;
-  --padding-end: 8px;
-  --padding-bottom: 0px;
-  --padding-start: 0;
-  margin-left: 10px;
-  font-size: inherit;
-  color: black;
 }
 
 .FontSize {
   font-size: 21px;
-  color: rgb(126, 126, 126);
+  // color: rgb(126, 126, 126);
+  color: grey;
 }

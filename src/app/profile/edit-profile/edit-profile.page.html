@@ -74,11 +74,11 @@
 
         <div class="form-group">
 
-          <ion-label class="FontSize" position="floating" for="mobile">Mobile number</ion-label>
-          <ion-input type="text" class="form-control" id="mobile" required [(ngModel)]="formValue.mobile" name="mobile"
-            #mobile="ngModel"></ion-input>
+          <ion-label class="FontSize" position="floating" for="phoneNumber">Mobile number</ion-label>
+          <ion-input type="text" class="form-control" id="mobile" required [(ngModel)]="formValue.phoneNumber" name="phoneNumber"
+            #phoneNumber="ngModel"></ion-input>
 
-          <div [hidden]="mobile.valid || mobile.pristine" class="alert-danger">
+          <div [hidden]="phoneNumber.valid || phoneNumber.pristine" class="alert-danger">
 
             Mobile number is required
 
