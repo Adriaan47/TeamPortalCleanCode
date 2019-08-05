@@ -14,9 +14,60 @@ import { UsersService } from '../../services/users.service';
   styleUrls: ['./components.component.scss'],
 })
 export class ComponentsComponent implements OnInit {
+  form: FormGroup = new FormGroup({
+    image: new FormControl(),
+  });
 
-  constructor() { }
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
+  uid: string;
+  imgURL: any;
+  selectedIMG: File = null;
 
-  ngOnInit() {}
+  constructor(
+    public memberSVC: UsersService,
+    private router: Router,
+    private storage: AngularFireStorage,
+    private afs: AngularFirestore,
+    private location: Location, ) { }
+
+  ngOnInit() {
+    this.uid = this.memberSVC.getUID();
+    // get profile picture
+    this.memberSVC.getProfilePicture(this.uid).subscribe(pictures => {
+      return this.croppedImage = pictures.profilePicture;
+    });
+  }
+
+  fileChangeEvent(event: any): void {
+    this.imageChangedEvent = event;
+  }
+  imageCropped(event: ImageCroppedEvent) {
+    this.croppedImage = event.base64;
+    const fileBeforeCrop = this.imageChangedEvent.target.files[0];
+    this.selectedIMG = new File([event.file], fileBeforeCrop.name,
+      { type: fileBeforeCrop.type });
+  }
+
+  uploadImg() {
+    const filePath = `profile/${this.uid}/${this.selectedIMG.name}`;
+    const fileRef = this.storage.ref(filePath);
+    this.storage.upload(filePath, this.selectedIMG).snapshotChanges().pipe(
+      finalize(() => fileRef.getDownloadURL().subscribe((url) => {
+        this.imgURL = url;
+        const imgage: string = this.imgURL;
+        this.afs.collection(`users`)
+          .doc(this.uid)
+          .update({
+            profilePicture: imgage,
+          }).then(() => {
+            this.router.navigate(['edit-profile']);
+          }).catch(err => {
+            return err.message;
+          });
+      })
+      )
+    ).subscribe();
+  }
 
 }

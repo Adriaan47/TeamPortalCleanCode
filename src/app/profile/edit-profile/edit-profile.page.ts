@@ -152,5 +152,9 @@ export class EditProfilePage implements OnInit {
     });
     await alert.present();
   }
+  updateProfilePicture() {
+    this.fileBtn.nativeElement.click();
+}
 
 }
+

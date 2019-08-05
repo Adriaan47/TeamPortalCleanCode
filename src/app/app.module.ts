@@ -22,9 +22,9 @@ import { HttpClientModule } from '@angular/common/http';
 // import { MemberinfoComponent } from './members/memberinfo/memberinfo.component';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage';
-// import { CropingComponent } from './croping/croping.component';
+import { ComponentsComponent } from './profile/components/components.component';
 // import { RefreshComponent } from './refresh/refresh.component';
-// import { ImageCropperModule } from 'ngx-image-cropper';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 
 
@@ -33,7 +33,7 @@ import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage';
     AppComponent,
     //  NotifiticationsComponent,
       // MemberinfoComponent,
-      // CropingComponent,
+      ComponentsComponent,
       // RefreshComponent
     ],
   entryComponents: [
@@ -54,7 +54,7 @@ import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage';
     // tslint:disable-next-line: deprecation
     HttpModule,
     ShareModule,
-    // ImageCropperModule
+    ImageCropperModule
     // ShareModule
   ],
   providers: [
