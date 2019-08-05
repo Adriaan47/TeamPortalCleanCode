@@ -76,7 +76,7 @@ export class SkillsPage implements OnInit {
 
   async presentAlertConfirmDelete(id: string) {
     const alert = await this.alertCtrl.create({
-      header: 'Delete Skill?',
+      header: `Delete ${id} Skill?`,
       message: 'Are you sure you want to delete this skill?',
       buttons: [
         {
@@ -89,8 +89,10 @@ export class SkillsPage implements OnInit {
         }, {
           text: 'Yes',
           handler: () => {
-            this.deleteSkill(id);
-            this.refresh();
+            this.users.deleteSkill(this.users.getUID(), id).subscribe((res) => {
+              this.res = res;
+              console.log(res);
+            });
           }
         }
       ]
@@ -107,11 +109,7 @@ export class SkillsPage implements OnInit {
   }
 
   deleteSkill(id: string) {
-    this.users.deleteSkill(this.users.getUID(), id).subscribe((res) => {
-      this.res = res;
-      console.log(res);
-      this.refresh();
-    });
+    this.users.deleteSkill(this.users.getUID(), id);
   }
   refresh(): void {
     window.location.reload();
