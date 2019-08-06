@@ -10,55 +10,27 @@
 
 
 <div class="container" id="grad">
-	<div [hidden]="submitted">
-		<form #heroForm="ngForm">
-			<div class="form-group">
-
-				<ion-label position="floating" for="name">Enterprise ID</ion-label>
-				<ion-input type="text" class="form-control" id="txtEID" required [(ngModel)]="username" name="name"
-					placeholder="" #name="ngModel">
-				</ion-input>
-
-
-				<div [hidden]="name.valid || name.pristine" class="alert-danger">
-
-					Enterprise ID is required
-
-				</div>
+	<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+		<div class="form-group">
+			<ion-label position="floating" for="eid">Enterprise ID</ion-label>
+			<ion-input class="form-control" id="txtEID" required name="eid" #eid="ngModel" [(ngModel)]="loginUser.eid"
+				type="email"></ion-input>
+			<div [hidden]="eid.valid || eid.pristine" class="alert-danger">
+				Enterprise ID is required
 			</div>
-
-
-
-
-			<!-- <div class="container" id="grad"> -->
-			<div [hidden]="submitted">
-				<form #heroForm="ngForm">
-					<div class="form-group">
-
-						<ion-label position="floating" for="password1">Password</ion-label>
-						<ion-input type="password" id="txtPassword" class="form-control" required [(ngModel)]="password"
-							placeholder="" name="password" #password1="ngModel">
-						</ion-input>
-
-						<div [hidden]="password1.valid || password1.pristine" class="alert-danger">
-
-							Password is required
-
-						</div>
-					</div>
-
-
-
-					<ion-button style="text-transform: none;" slot="end" type="submit" expand="block" id="btnLogin"
-						[disabled]="!heroForm.valid" shape="square" (click)="login()" size="medium">
-						Login</ion-button>
-
-
-
-					<ion-row style="height: 30px"></ion-row>
-
-				</form>
+		</div>
+		<div class="form-group">
+			<ion-label position="floating" for="password">Password</ion-label>
+			<ion-input class="form-control" required id="txtPassword" name="password" #password="ngModel"
+				[(ngModel)]="loginUser.password" type="password"></ion-input>
+			<div [hidden]="password.valid || password.pristine" class="alert-danger">
+				Password is required
 			</div>
-		</form>
-	</div>
+		</div>
+
+		<ion-button style="text-transform: none;" slot="end" type="submit" expand="block" id="btnLogin"
+			[disabled]="!loginForm.valid" shape="square" size="medium">
+			Login</ion-button>
+		<ion-row style="height: 30px"></ion-row>
+	</form>
 </div>

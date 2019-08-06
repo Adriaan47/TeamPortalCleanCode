@@ -4,6 +4,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { Router } from '@angular/router';
 import { AlertController, MenuController } from '@ionic/angular';
 import { UsersService } from '../services/users.service';
+import { getLocaleDateFormat } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
@@ -16,7 +17,7 @@ export class ProfilePage implements OnInit {
   sub;
   res: any;
   data: any;
-
+  userId: string;
   constructor(
     public router: Router,
     private afs: AngularFirestore,
@@ -25,32 +26,22 @@ export class ProfilePage implements OnInit {
     private menu: MenuController,
     private http: HttpClient,
     private alertCtrl: AlertController) {
-    this.mainuser = afs.doc(`users/${this.users.getUID()}`);
-    this.sub = this.mainuser.valueChanges().subscribe(event => {
-      this.profilePic = event.profilePic;
-    });
-    this.getDp();
   }
 
 
   ngOnInit() {
-    this.users.getMember(this.users.getUID()).subscribe((res) => {
+
+    this.userId = this.users.getUID();
+    this.users.getDatas(this.userId).subscribe((res) => {
       this.res = res;
-      console.log(res);
     });
-
-  }
-
-  getDp() {
-    this.users.getProfilePicture(this.users.getUID()).subscribe((data) => {
-      this.data = data;
-      console.log(data);
+    this.users.getProfilePicture(this.userId).subscribe((prof) => {
+      this.data = prof.avatar;
     });
   }
-
 
   edit() {
-    this.router.navigate(['/tabs/profile']);
+    this.router.navigate(['tabs/profile/edit-profile']);
   }
 
   async presentAlertConfirm() {

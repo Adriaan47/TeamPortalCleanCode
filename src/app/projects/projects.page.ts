@@ -20,10 +20,9 @@ export class ProjectsPage implements OnInit {
     public router: Router,
     private http: HttpClient, ) {
 
-    this.http.get('project-info/information.json').forEach(res => {
-      this.information.push(res);
-      console.log(this.information);
-      return this.information;
+    this.http.get('assets/information.json').subscribe(res => {
+    this.information = res['data'];
+    this.information[0].open = false;
     });
   }
 

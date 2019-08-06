@@ -13,6 +13,11 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../profile/profile.module#ProfilePageModule'
+          },
+          {
+            path: 'edit-profile',
+            loadChildren:
+              '../profile/edit-profile/edit-profile.module#EditProfilePageModule'
           }
         ]
       },
@@ -22,7 +27,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../projects/projects.module#ProjectsPageModule'
-          }
+          },
         ]
       },
       {
@@ -31,15 +36,31 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../skills/skills.module#SkillsPageModule'
+          },
+          {
+            path: 'update-skills/:id',
+            loadChildren:
+              '../skills/update-skills/update-skills.module#UpdateSkillsPageModule'
+          },
+          {
+            path: 'add-skills',
+            loadChildren:
+              '../skills/add-skills/add-skills.module#AddSkillsPageModule'
           }
         ]
       },
       {
-        path: 'search-members',
+        path: 'members',
         children: [
           {
             path: '',
-            loadChildren: '../search-members/search-members.module#SearchMembersPageModule'
+            loadChildren:
+              '../search-members/search-members.module#SearchMembersPageModule'
+          },
+          {
+            path: 'user-details/:id',
+            loadChildren:
+              '../search-members/members-info/members-info.module#MembersInfoPageModule'
           }
         ]
       },
@@ -58,9 +79,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(routes)
-  ],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class TabsPageRoutingModule { }

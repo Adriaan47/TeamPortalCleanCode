@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { UsersService } from '../services/users.service';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-// import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -12,61 +12,41 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  // tslint:disable-next-line: no-inferrable-types
-  username: string = '';
-  // tslint:disable-next-line: no-inferrable-types
-  password: string = '';
 
+loginUser: any = {};
 
-
-  // tslint:disable-next-line:max-line-length
   constructor(
     public afAuth: AngularFireAuth,
     public user: UsersService,
     public router: Router,
     public toastController: ToastController,
-    // private splashScreen: SplashScreen
     ) {
 
   }
 
   ngOnInit() {
-    console.log(this.user.getUID());
   }
-  async login() {
-    // tslint:disable-next-line: indent
-    const { username, password } = this;
-    // this.username = '';
-    // this.password = '';
-    // tslint:disable-next-line: indent
-    try {
-      // tslint:disable-next-line: indent
-      // Only sign in with accenture email
-      const res = await this.afAuth.auth.signInWithEmailAndPassword(username + '@accenture.com', password);
 
-      if (res.user) {
-        this.user.setUser({
-          username,
-          uid: res.user.uid
-        });
-
-        this.router.navigate(['/tabs']);
-        console.log(username);
-       }
-
-    } catch (err) {
-      console.log(err);
+  onSubmit(user: NgForm) {
+    const eid = user.value.eid + '@accenture.com';
+    this.afAuth.auth.signInWithEmailAndPassword(eid, user.value.password).then(async () => {
+      const toast = await this.toastController.create({
+        message: `${user.value.eid} logged in successfully`,
+        duration: 3000,
+        color: 'success'
+      });
+      toast.present();
+      this.router.navigate(['tabs/profile']);
+    }).catch(async () => {
       const toast = await this.toastController.create({
         message: 'Incorrect password or email!.',
         duration: 3000,
         color: 'danger'
       });
       toast.present();
-
-    }
-    // this.wait(3000);
-    // this.refresh();
+    });
   }
+
   refresh(): void {
     window.location.reload();
   }

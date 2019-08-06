@@ -8,8 +8,9 @@ import { Skills } from '../services/skills';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { AuthMember } from '../interfaces/authMember';
-import { ToastController } from '@ionic/angular';
+import { ToastController, AlertController } from '@ionic/angular';
 import { UserPublic } from './user.public.interface';
+
 
 
 // tslint:disable-next-line: class-name
@@ -37,8 +38,9 @@ export class UsersService {
   sid: string;
   skillID: string;
   user$: Observable<any>;
+  userData: any;
   private url = 'https://demoproject-8b1fa.appspot.com/users';
-  private skillUrl = `https://demoproject-8b1fa.appspot.com/users/skills`;
+  private skillUrl = `https://demoproject-8b1fa.appspot.com/skills`;
 
 
   constructor(
@@ -47,12 +49,18 @@ export class UsersService {
     private afs: AngularFirestore,
     private http: HttpClient,
     public toastController: ToastController,
+    private alertController: AlertController,
   ) { // track current user state
     this.user$ = this.afAuth.authState.pipe(
       switchMap(curUser => {
         if (curUser) {
+          this.userData = curUser;
+          localStorage.setItem('user', JSON.stringify(this.userData));
+          JSON.parse(localStorage.getItem('user'));
           return this.afs.doc<AuthMember>(`users/${curUser.uid}`).valueChanges();
         } else {
+          localStorage.setItem('user', null);
+          JSON.parse(localStorage.getItem('user'));
           return of(null);
         }
       })
@@ -83,7 +91,11 @@ export class UsersService {
 
 
   getCurrentUserSkill(uid: string, sid: string): Observable<Skills> {
-    return this.http.get<Skills>(`https://demoproject-8b1fa.appspot.com/users/skills/${uid}/skill/${sid}`);
+    return this.http.get<Skills>(`${this.skillUrl}/${uid}/skill/${sid}`);
+  }
+
+  updateSkill(uId: string, idSkill: string, skill: Skills) {
+    return this.http.put(`${this.skillUrl}/${uId}/update/${idSkill}`, skill, httpOptions);
   }
 
   getData(): Observable<object> {
@@ -91,32 +103,29 @@ export class UsersService {
   }
 
   getProfilePicture(id: string): Observable<Pictures> {
-    return this.http.get<Pictures>(`https://demoproject-8b1fa.appspot.com/users/${id}/pictures`);
+    return this.http.get<Pictures>(`${this.url}/${id}/pictures`);
   }
 
   getDatas(id: string): Observable<UserPublic> {
-    return this.http.get<UserPublic>(`https://demoproject-8b1fa.appspot.com/users/${id}/get-public`);
+    return this.http.get<UserPublic>(`${this.url}/${id}/get-public`);
   }
-
+  updatePublic(id: string, publicDetails: UserPublic) {
+    return this.http.put(`${this.url}/${id}/public`, publicDetails, httpOptions);
+  }
   getMember(id: string) {
-    return this.http.get(`https://demoproject-8b1fa.appspot.com/users/${id}/member`);
+    return this.http.get(`${this.url}/${id}/member`);
   }
 
-  getSkills(id: string): Observable<Skills> {
-    return this.http.get<Skills>(`https://demoproject-8b1fa.appspot.com/skills/${id}`);
+  getSkills(id: string): Observable<Skills[]> {
+    return this.http.get<Skills[]>(`${this.skillUrl}/${id}`);
   }
 
   getSkillID(id: string, sid: string): Observable<Skills> {
-    return this.http.get<Skills>(`https://demoproject-8b1fa.appspot.com/skills/${id}/skill/${sid}`);
+    return this.http.get<Skills>(`${this.skillUrl}/${id}/skill/${sid}`);
   }
 
   reAuth(username: string, password: string) {
     return this.afAuth.auth.currentUser.reauthenticateWithCredential(auth.EmailAuthProvider.credential(username, password));
-  }
-
-
-  updateEmail(newemail: string) {
-    return this.afAuth.auth.currentUser.updateEmail(newemail);
   }
 
 
@@ -138,9 +147,6 @@ export class UsersService {
     }
   }
   // get profile picture
-  getPictures(id: string): Observable<Pictures> {
-    return this.http.get<Pictures>(`https://demoproject-8b1fa.appspot.com/users/${id}/pictures`);
-  }
 
   notifcation(msg: string, type: string) {
     return this.toastController.create({
@@ -150,4 +156,20 @@ export class UsersService {
       position: 'bottom'
     });
   }
-}
+  // Email link to reset password
+  resetPassword(email: string) {
+    return this.afAuth.auth.sendPasswordResetEmail(email).then(() => {
+      this.presentAlert('Password reset', 'Password reset email sent, check your inbox.');
+    }).catch(error => this.presentAlert('Error occured ', error.message));
+    }
+    async presentAlert(title: string, content: string) {
+      const alert = await this.alertController.create({
+        header: title,
+        message: content,
+        buttons: ['OK']
+
+      });
+      await alert.present();
+    }
+  }
+

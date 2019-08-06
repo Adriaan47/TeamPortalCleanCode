@@ -24,28 +24,18 @@ export class MembersInfoPage implements OnInit {
   constructor(
     private route: ActivatedRoute, private users: UsersService, private rout: Router
   ) {
-    this.getdp();
   }
 
   ngOnInit() {
     this.userID = this.route.snapshot.paramMap.get('id');
-    console.log(this.userID);
-
-    this.users.getDatas(this.userID).subscribe(res => {
-      this.res = res;
-      console.log(this.res);
+    this.users.getDatas(this.userID).subscribe(user => {
+      this.res = user;
+    });
+    this.users.getProfilePicture(this.userID).subscribe(userAv => {
+      this.dp = userAv.avatar;
     });
   }
 
-  getdp() {
-    this.userID = this.route.snapshot.paramMap.get('id');
-    console.log(this.userID);
-
-    this.users.getProfilePicture(this.userID).subscribe(dp => {
-      this.dp = dp;
-      console.log(this.dp);
-    });
-  }
 
   back() {
     this.rout.navigate(['tabs/members']);

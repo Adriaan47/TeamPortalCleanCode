@@ -18,13 +18,20 @@ import { UsersService } from './services/users.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage';
+import { ComponentsComponent } from './profile/components/components.component';
+// import { RefreshComponent } from './refresh/refresh.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-  ],
+    //  NotifiticationsComponent,
+      // MemberinfoComponent,
+      ComponentsComponent,
+      // RefreshComponent
+    ],
   entryComponents: [
   ],
   imports: [
@@ -40,6 +47,8 @@ import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage';
     AngularFireStorageModule,
     HttpModule,
     ShareModule,
+    ImageCropperModule
+    // ShareModule
   ],
   providers: [
     StatusBar,

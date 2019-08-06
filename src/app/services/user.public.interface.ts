@@ -6,6 +6,7 @@ export interface UserPublic {
     surname: string;
     email: string;
     careerLevel: number;
-    mobile: string;
+    phoneNumber: string;
     birthDate: Date;
+    eid: string;
 }

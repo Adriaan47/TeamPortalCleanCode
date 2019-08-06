@@ -64,9 +64,10 @@
     --padding-top: 0px;
     --padding-end: 8px;
     --padding-bottom: 0px;
-    --padding-start: 0;
+    --padding-start: 0px;
     font-size: inherit;
     color: black;
+    margin-left: 10px;
   }
   
   .IncreaseHeight {
@@ -76,10 +77,12 @@
   .FontSize1 {
     font-size: 17px;
     color: rgb(126, 126, 126);
+    margin-left: 10px;
   }
   
   .FontSize {
     font-size: 21px;
-    color: rgb(126, 126, 126);
+    // color: rgb(126, 126, 126);
+    color: grey;
   }
   
