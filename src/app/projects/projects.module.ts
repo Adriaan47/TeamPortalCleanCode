@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { ProjectsPage } from './projects.page';
 
+import { SharedComponentsModule } from '../shared-components/shared-components.module';
+
 const routes: Routes = [
   {
     path: '',
@@ -16,6 +18,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
+    SharedComponentsModule,
     CommonModule,
     FormsModule,
     IonicModule,
@@ -23,4 +26,4 @@ const routes: Routes = [
   ],
   declarations: [ProjectsPage]
 })
-export class ProjectsPageModule {}
+export class ProjectsPageModule { }

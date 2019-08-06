@@ -28,11 +28,6 @@ const routes: Routes = [
             path: '',
             loadChildren: '../projects/projects.module#ProjectsPageModule'
           },
-          {
-            path: 'project-info',
-            loadChildren:
-              '../projects/project-info/project-info.module#ProjectInfoPageModule'
-          }
         ]
       },
       {
@@ -87,4 +82,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule { }
