@@ -159,7 +159,7 @@ export class UsersService {
   // Email link to reset password
   resetPassword(email: string) {
     return this.afAuth.auth.sendPasswordResetEmail(email).then(() => {
-      this.presentAlert('Password reset', 'Password reset email sent, check your inbox.') 
+      this.presentAlert('Password reset', 'Password reset email sent, check your inbox.')
     }).catch(error => this.presentAlert('Error occured ', error.message));
     }
     async presentAlert(title: string, content: string){
@@ -179,5 +179,6 @@ export class UsersService {
         return err.message;
       });
     }
-  }
+}
+
 

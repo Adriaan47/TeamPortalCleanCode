@@ -20,7 +20,7 @@ export class ProjectsPage implements OnInit {
     public router: Router,
     private http: HttpClient, ) {
 
-    this.http.get('project-info/information.json').subscribe(res => {
+    this.http.get('assets/information.json').subscribe(res => {
     this.information = res['data'];
     this.information[0].open = false;
     });

@@ -13,6 +13,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
+
   constructor(
     private menu: MenuController,
     public router: Router,
@@ -47,7 +48,7 @@ export class AppComponent {
         }, {
           text: 'Yes',
           handler: () => {
-            this.router.navigate(['login']);
+            this.logout();
           }
         }
       ]
@@ -60,7 +61,12 @@ export class AppComponent {
     this.menu.open('end');
   }
   reset() {
-  const userEmail = this.afAuth.auth.currentUser.email;
-  this.userServ.resetPassword(userEmail)
+    const userEmail = this.afAuth.auth.currentUser.email;
+    this.userServ.resetPassword(userEmail)
   }
+
+  async logout() {
+    await this.userServ.logout();
+  }
+
 }
