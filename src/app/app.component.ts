@@ -61,7 +61,7 @@ export class AppComponent {
   }
   reset() {
     const userEmail = this.afAuth.auth.currentUser.email;
-    this.userServ.resetPassword(userEmail)
+    this.userServ.resetPassword(userEmail);
   }
 
   async logout() {

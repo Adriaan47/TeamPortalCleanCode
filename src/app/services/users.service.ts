@@ -120,10 +120,6 @@ export class UsersService {
     return this.http.get<Skills[]>(`${this.skillUrl}/${id}`);
   }
 
-  getSkillID(id: string, sid: string): Observable<Skills> {
-    return this.http.get<Skills>(`${this.skillUrl}/${id}/skill/${sid}`);
-  }
-
   reAuth(username: string, password: string) {
     return this.afAuth.auth.currentUser.reauthenticateWithCredential(auth.EmailAuthProvider.credential(username, password));
   }
