@@ -171,5 +171,13 @@ export class UsersService {
       });
       await alert.present();
     }
+    // logout user
+    async logout() {
+      this.afAuth.auth.signOut().then(() => {
+        return this.router.navigate(['logout']);
+      }).catch(err => {
+        return err.message;
+      });
+    }
   }
 
