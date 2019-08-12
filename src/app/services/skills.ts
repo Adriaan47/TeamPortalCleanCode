@@ -6,4 +6,5 @@ export class Skills {
     lastUsed: number = Date.now();
     activeExperience: number;
     active: boolean;
+    userId: string;
     }

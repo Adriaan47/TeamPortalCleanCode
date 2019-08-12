@@ -120,10 +120,6 @@ export class UsersService {
     return this.http.get<Skills[]>(`${this.skillUrl}/${id}`);
   }
 
-  getSkillID(id: string, sid: string): Observable<Skills> {
-    return this.http.get<Skills>(`${this.skillUrl}/${id}/skill/${sid}`);
-  }
-
   reAuth(username: string, password: string) {
     return this.afAuth.auth.currentUser.reauthenticateWithCredential(auth.EmailAuthProvider.credential(username, password));
   }
@@ -161,15 +157,20 @@ export class UsersService {
     return this.afAuth.auth.sendPasswordResetEmail(email).then(() => {
       this.presentAlert('Password reset', 'Password reset email sent, check your inbox.');
     }).catch(error => this.presentAlert('Error occured ', error.message));
-    }
-    async presentAlert(title: string, content: string) {
-      const alert = await this.alertController.create({
-        header: title,
-        message: content,
-        buttons: ['OK']
-
-      });
-      await alert.present();
-    }
   }
+  async presentAlert(title: string, content: string) {
+    const alert = await this.alertController.create({
+      header: title,
+      message: content,
+      buttons: ['OK']
 
+    });
+    await alert.present();
+  }
+  logout() {
+    return this.afAuth.auth.signOut().then(() => {
+      this.router.navigate(['/login']);
+
+    });
+  }
+}

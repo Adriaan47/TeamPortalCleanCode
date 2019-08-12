@@ -93,16 +93,15 @@
             </ion-label>
             <ion-select class="form-control" placeholder=" " id="active" required [(ngModel)]="active" name="active"
               #active_dev="ngModel">
-              <ion-select-option value="yes" selected="true">Yes</ion-select-option>
-              <ion-select-option value="no">No</ion-select-option>
+              <ion-select-option value="Yes" selected="true">Yes</ion-select-option>
+              <ion-select-option value="No">No</ion-select-option>
             </ion-select>
           </ion-item>
           <div [hidden]="active_dev.valid || active_dev.pristine" class="alert-danger">
-
             This option is required
-
           </div>
         </div>
+        <input type="text" hidden name="userId" required [(ngModel)]="userId">
         <ion-item lines="none">
           <ion-button style="text-transform: none;" id="buttonColor" (click)="presentAlertConfirmAddSkill()"
             type="submit" shape="square" size="medium" slot="end" [disabled]="!heroForm1.form.valid">

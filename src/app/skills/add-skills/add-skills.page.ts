@@ -15,7 +15,7 @@ export class AddSkillsPage implements OnInit {
 
 
   mainuser: AngularFirestoreDocument;
-
+  userId: any;
 
   // tslint:disable-next-line: max-line-length
   constructor(public router: Router, private afs: AngularFirestore, private users: UsersService, private alertCtrl: AlertController) {
@@ -25,7 +25,8 @@ export class AddSkillsPage implements OnInit {
 
 
   ngOnInit() {
-  }
+    this.userId = this.users.getUID();
+ }
 
   async presentAlertConfirmLogout() {
     const alert = await this.alertCtrl.create({
@@ -93,7 +94,6 @@ export class AddSkillsPage implements OnInit {
 
 
   CreateSkill(skill: NgForm) {
-    console.log(skill.value);
     this.users.createSkill(this.users.getUID(), skill.value).subscribe(() => {
       return this.presentAlertConfirmAddSkill().then(() => {
         this.router.navigate(['skills']);

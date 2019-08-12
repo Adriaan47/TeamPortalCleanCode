@@ -20,16 +20,9 @@ export class UpdateSkillsPage implements OnInit {
   // tslint:disable-next-line:no-inferrable-types
   busy: boolean = false;
 
-  level;
-  lastUsed;
-  activeExperience;
-  active;
-  id;
+
   skillID: string;
   res: any;
-  skills: any;
-  origin;
-  name: any;
 
 
   constructor(
@@ -43,31 +36,18 @@ export class UpdateSkillsPage implements OnInit {
     public alertCtrl: AlertController
   ) { }
   skill: any;
+  uid: any;
   ngOnInit() {
+    this.uid = this.users.getUID();
     this.skillID = this.route.snapshot.paramMap.get('id');
-    this.mainuser = this.afs.doc(`users/${this.users.getUID()}/skills/${this.skillID}`);
-    this.sub = this.mainuser.valueChanges().subscribe(event => {
-      this.name = event.name;
-      this.level = event.level;
-      this.active = event.active;
-      this.lastUsed = event.lastUsed;
-      this.activeExperience = event.activeExperience;
-      this.origin = event.origin;
+    this.users.getCurrentUserSkill(this.uid, this.skillID).subscribe(skill => {
+      this.sub = skill;
+      console.log(this.sub);
     });
   }
 
   async UpdateSkills() {
     this.skillID = this.route.snapshot.paramMap.get('id');
-    this.busy = true;
-    this.afs.doc(`users/${this.users.getUID()}/skills/${this.skillID}`).update({
-      name: this.name,
-      level: this.level,
-      lastUsed: this.lastUsed,
-      activeExperience: this.activeExperience,
-      active: this.active,
-      origin: this.origin,
-    });
-
     this.presentAlertUpdateSkill();
   }
 
@@ -77,9 +57,6 @@ export class UpdateSkillsPage implements OnInit {
       console.log(res);
 
     });
-  }
-  getSkills() {
-    this.users.getSkills(this.users.getUID()).subscribe(skills => this.skills = skills);
   }
 
   deleteDoc() {
