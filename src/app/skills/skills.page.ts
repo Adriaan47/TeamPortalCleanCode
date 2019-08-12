@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { FormArray } from '@angular/forms';
-import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { AlertController, PopoverController } from '@ionic/angular';
 import { Skills } from '../services/skills';
@@ -30,7 +29,7 @@ export class SkillsPage implements OnInit {
     constructor(
 
         // tslint:disable-next-line: deprecation
-        private http: Http,
+        private http: HttpClient,
         public router: Router,
         private afs: AngularFirestore,
         private users: UsersService,
@@ -68,19 +67,18 @@ export class SkillsPage implements OnInit {
 this.users.deleteSkill(this.users.getUID(), id).subscribe((res) => {
     this.res = res;
 });
-this.refresh();
                     }
                 }
             ]
             // tslint:disable-next-line: semicolon
 });
-await alert.present();
+        await alert.present();
     }
 
 async DismissClick() {
     await this.popoverController.dismiss();
 }
-delete (itemid) {
+delete(itemid) {
     this.afs.doc('members');
 }
 

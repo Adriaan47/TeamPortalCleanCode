@@ -8,6 +8,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { NgForm, NgControl } from '@angular/forms';
 import { UserPublic } from '../../services/user.public.interface';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-edit-profile',
@@ -18,7 +19,7 @@ export class EditProfilePage implements OnInit {
 
   constructor(
     private users: UsersService,
-    private http: Http,
+    private http: HttpClient,
     private afs: AngularFirestore,
     private router: Router,
     private storage: AngularFireStorage,
@@ -154,6 +155,6 @@ export class EditProfilePage implements OnInit {
   }
   updateProfilePicture() {
     this.fileBtn.nativeElement.click();
-}
+  }
 
 }
