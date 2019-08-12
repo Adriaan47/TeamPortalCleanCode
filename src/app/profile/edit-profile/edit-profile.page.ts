@@ -157,4 +157,3 @@ export class EditProfilePage implements OnInit {
 }
 
 }
-

@@ -26,31 +26,9 @@ export class AddSkillsPage implements OnInit {
 
   ngOnInit() {
     this.userId = this.users.getUID();
- }
-
-  async presentAlertConfirmLogout() {
-    const alert = await this.alertCtrl.create({
-      header: 'Logout?',
-      message: 'Are you sure you want to logout?',
-      buttons: [
-        {
-          text: 'No',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Confirm Cancel: ?');
-          }
-        }, {
-          text: 'Yes',
-          handler: () => {
-            this.router.navigate(['tabs/login']);
-          }
-        }
-      ]
-      // tslint:disable-next-line: semicolon
-    });
-    await alert.present();
   }
+
+
 
   async presentAlertConfirmAddSkill() {
     const alert = await this.alertCtrl.create({
@@ -60,7 +38,8 @@ export class AddSkillsPage implements OnInit {
         {
           text: 'OK',
           handler: () => {
-            this.router.navigate(['/tabs/skills']);
+            this.Nav();
+
           }
         }
       ]
@@ -83,7 +62,7 @@ export class AddSkillsPage implements OnInit {
         }, {
           text: 'Yes',
           handler: () => {
-            this.router.navigate(['tabs/skills']);
+            this.Nav();
           }
         }
       ]
@@ -100,6 +79,10 @@ export class AddSkillsPage implements OnInit {
       });
     });
   }
-
-
+  refresh(): void {
+    window.location.reload();
+  }
+  Nav() {
+    this.router.navigate(['tabs/skills']);
+     }
 }

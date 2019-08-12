@@ -48,6 +48,7 @@ export class AppComponent {
           text: 'Yes',
           handler: () => {
             this.logout();
+
           }
         }
       ]
@@ -59,6 +60,9 @@ export class AppComponent {
   openEnd() {
     this.menu.open('end');
   }
+  CloseEnd() {
+    this.menu.close();
+  }
   reset() {
     const userEmail = this.afAuth.auth.currentUser.email;
     this.userServ.resetPassword(userEmail);
@@ -66,5 +70,6 @@ export class AppComponent {
 
   async logout() {
     await this.userServ.logout();
+    this.CloseEnd();
   }
 }
