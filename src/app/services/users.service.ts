@@ -41,6 +41,7 @@ export class UsersService {
   userData: any;
   private url = 'https://demoproject-8b1fa.appspot.com/users';
   private skillUrl = `https://demoproject-8b1fa.appspot.com/skills`;
+  private SEARCH_URL = 'https://demoproject-8b1fa.appspot.com/search';
 
 
   constructor(
@@ -157,15 +158,19 @@ export class UsersService {
     return this.afAuth.auth.sendPasswordResetEmail(email).then(() => {
       this.presentAlert('Password reset', 'Password reset email sent, check your inbox.');
     }).catch(error => this.presentAlert('Error occured ', error.message));
-  }
-  async presentAlert(title: string, content: string) {
-    const alert = await this.alertController.create({
-      header: title,
-      message: content,
-      buttons: ['OK']
+    }
+    async presentAlert(title: string, content: string) {
+      const alert = await this.alertController.create({
+        header: title,
+        message: content,
+        buttons: ['OK']
 
-    });
-    await alert.present();
+      });
+      await alert.present();
+    }
+      // Get members with skills
+  getMemberSKills(): Observable<any> {
+    return this.http.get<any>(this.SEARCH_URL, httpOptions);
   }
   logout() {
     return this.afAuth.auth.signOut().then(() => {
