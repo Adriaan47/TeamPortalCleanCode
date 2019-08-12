@@ -10,7 +10,6 @@ import { AppRoutingModule } from './app-routing.module';
 import firebaseConfig from './services/firebase';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { HttpModule } from '@angular/http';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 // import { AuthService } from './services/auth.service';
 import { ShareModule } from './services/share.module';
@@ -21,6 +20,9 @@ import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage';
 import { ComponentsComponent } from './profile/components/components.component';
 // import { RefreshComponent } from './refresh/refresh.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { MaterialsModule } from './materials/materials.module';
+import { SearchMembersPageModule } from './search-members/search-members.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -45,9 +47,12 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
-    HttpModule,
+    HttpClientModule,
     ShareModule,
-    ImageCropperModule
+    ImageCropperModule,
+    MaterialsModule,
+    SearchMembersPageModule,
+    BrowserAnimationsModule
     // ShareModule
   ],
   providers: [

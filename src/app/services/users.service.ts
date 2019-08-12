@@ -41,6 +41,7 @@ export class UsersService {
   userData: any;
   private url = 'https://demoproject-8b1fa.appspot.com/users';
   private skillUrl = `https://demoproject-8b1fa.appspot.com/skills`;
+  private SEARCH_URL = 'https://demoproject-8b1fa.appspot.com/search';
 
 
   constructor(
@@ -171,5 +172,9 @@ export class UsersService {
       });
       await alert.present();
     }
+      // Get members with skills
+  getMemberSKills(): Observable<any> {
+    return this.http.get<any>(this.SEARCH_URL, httpOptions);
+  }
   }
 
