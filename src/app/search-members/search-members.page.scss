@@ -5,6 +5,9 @@ ion-content.background {
 #buttonColor {
   --background: #960584;
 }
+table {
+  width: 100%;
+}
 
 ion-title {
   position: absolute;
@@ -53,4 +56,29 @@ ion-note {
 .FontSize2 {
   font-size: 16px;
   margin-right: 10px;
+}
+.mat-column-name {
+padding-right: 10px;
+}
+.mat-column-surname {
+  padding-right: 10px;
+}
+.mat-column-skills {
+padding-right: 10px;
+}
+.table-head {
+  font-weight: bold;
+  font-size: medium;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.hide {
+  display: none;
+}
+mat-footer-row mat-footer-cell {
+  justify-content: center;
+  font-style: italic;
+}
+.tableColor{
+  background-color: #fff;
 }
