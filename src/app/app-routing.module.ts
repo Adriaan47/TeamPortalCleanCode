@@ -7,8 +7,9 @@ import { ComponentsComponent } from './profile/components/components.component';
 const routes: Routes = [
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: '', loadChildren: './tabs/tabs.module#TabsPageModule', canActivate: [AuthGuard] },
-  { path: '**', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'upload-picture', component: ComponentsComponent },
+  { path: '**', loadChildren: './login/login.module#LoginPageModule' },
+
 ];
 @NgModule({
   imports: [
@@ -16,4 +17,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
