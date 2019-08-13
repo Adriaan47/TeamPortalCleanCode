@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { UsersService } from '../../services/users.service';
 import { NgForm } from '@angular/forms';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-add-skills',
@@ -18,7 +20,12 @@ export class AddSkillsPage implements OnInit {
   userId: any;
 
   // tslint:disable-next-line: max-line-length
-  constructor(public router: Router, private afs: AngularFirestore, private users: UsersService, private alertCtrl: AlertController) {
+  constructor(
+    public router: Router,
+    private afs: AngularFirestore,
+    private users: UsersService,
+    private location: Location,
+    private alertCtrl: AlertController) {
 
   }
 
@@ -26,7 +33,8 @@ export class AddSkillsPage implements OnInit {
 
   ngOnInit() {
     this.userId = this.users.getUID();
- }
+
+  }
 
   async presentAlertConfirmLogout() {
     const alert = await this.alertCtrl.create({
@@ -61,6 +69,7 @@ export class AddSkillsPage implements OnInit {
           text: 'OK',
           handler: () => {
             this.router.navigate(['/tabs/skills']);
+
           }
         }
       ]
@@ -95,11 +104,15 @@ export class AddSkillsPage implements OnInit {
 
   CreateSkill(skill: NgForm) {
     this.users.createSkill(this.users.getUID(), skill.value).subscribe(() => {
-      return this.presentAlertConfirmAddSkill().then(() => {
-        this.router.navigate(['skills']);
-      });
+      this.ngOnInit();
+    }, err => {
+      this.ngOnInit();
+      return null;
     });
-  }
 
+  }
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
 }

@@ -8,6 +8,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { NgForm, NgControl } from '@angular/forms';
 import { UserPublic } from '../../services/user.public.interface';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-edit-profile',
@@ -24,6 +25,7 @@ export class EditProfilePage implements OnInit {
     private storage: AngularFireStorage,
     private alertController: AlertController,
     private user: UsersService,
+    private location: Location,
     // tslint:disable-next-line:no-shadowed-variable
     public alertCtrl: AlertController) {
 
@@ -72,6 +74,9 @@ export class EditProfilePage implements OnInit {
     this.users.getProfilePicture(this.userID).subscribe(avatar => {
       this.avatar = avatar.avatar;
     });
+    this.router.navigateByUrl('/refresh', { skipLocationChange: true }).then(() => {
+      this.router.navigate([decodeURI(this.location.path())]);
+    });
 
   }
 
@@ -94,10 +99,8 @@ export class EditProfilePage implements OnInit {
 
   updateDetails(details: NgForm) {
     this.users.updatePublic(this.userID, details.value).subscribe(() => {
-      this.presentAlertConfirm();
-    }, error => {
-      this.presentAlert('Error occured', error.message);
     });
+    this.presentAlertConfirm();
   }
 
   async presentAlert(title: string, content: string) {
@@ -122,8 +125,8 @@ export class EditProfilePage implements OnInit {
           handler: () => {
             this.router.navigate(['tabs/profile']);
           }
-
         }
+
       ]
       // tslint:disable-next-line: semicolon
     });
@@ -154,7 +157,5 @@ export class EditProfilePage implements OnInit {
   }
   updateProfilePicture() {
     this.fileBtn.nativeElement.click();
+  }
 }
-
-}
-

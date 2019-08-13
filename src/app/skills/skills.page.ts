@@ -7,6 +7,7 @@ import { AlertController, PopoverController } from '@ionic/angular';
 import { Skills } from '../services/skills';
 import { UsersService } from '../services/users.service';
 import { HttpClient } from '@angular/common/http';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-skills',
@@ -35,6 +36,7 @@ export class SkillsPage implements OnInit {
     private afs: AngularFirestore,
     private users: UsersService,
     private alertCtrl: AlertController,
+    private location: Location,
     public popoverController: PopoverController,
   ) {
   }
@@ -76,7 +78,7 @@ export class SkillsPage implements OnInit {
 
   async presentAlertConfirmDelete(id: string) {
     const alert = await this.alertCtrl.create({
-      header: `Delete ${id} Skill?`,
+      header: `Delete Skill?`,
       message: 'Are you sure you want to delete this skill?',
       buttons: [
         {
@@ -89,9 +91,11 @@ export class SkillsPage implements OnInit {
         }, {
           text: 'Yes',
           handler: () => {
-            this.users.deleteSkill(this.users.getUID(), id).subscribe((res) => {
-              this.res = res;
-              console.log(res);
+            this.users.deleteSkill(this.users.getUID(), id).subscribe(async () => {
+              this.ngOnInit();
+            }, err => {
+              this.ngOnInit();
+              return null;
             });
           }
         }

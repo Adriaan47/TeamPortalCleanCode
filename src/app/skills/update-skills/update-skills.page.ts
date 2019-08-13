@@ -83,6 +83,7 @@ export class UpdateSkillsPage implements OnInit {
           text: 'OK',
           handler: () => {
             this.router.navigate(['/tabs/skills']);
+            this.ngOnInit();
 
           }
         }

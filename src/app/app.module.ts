@@ -23,8 +23,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage';
 import { ComponentsComponent } from './profile/components/components.component';
-// import { RefreshComponent } from './refresh/refresh.component';
+import { RefreshComponent } from './refresh/refresh.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+
 
 
 
@@ -34,7 +35,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     //  NotifiticationsComponent,
       // MemberinfoComponent,
       ComponentsComponent,
-      // RefreshComponent
+      RefreshComponent
     ],
   entryComponents: [
     // NotifiticationsComponent,
