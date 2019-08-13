@@ -17,10 +17,10 @@
             "project": "Upcoming projects",
             "children": [
                 {
-                    "project": "Cola Cola",
+                    "project": "Coca-Cola",
                     "children": [
                         {
-                            "project": "Cola Cola",
+                            "project": "Coca-Cola",
                             "task": "Re-make add",
                             "role": "Media manager",
                             "start": "2019/05/09",
