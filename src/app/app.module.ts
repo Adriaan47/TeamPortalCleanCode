@@ -17,9 +17,8 @@ import { UsersService } from './services/users.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage';
-import { ComponentsComponent } from './profile/components/components.component';
 // import { RefreshComponent } from './refresh/refresh.component';
-import { ImageCropperModule } from 'ngx-image-cropper';
+
 import { MaterialsModule } from './materials/materials.module';
 import { SearchMembersPageModule } from './search-members/search-members.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -29,10 +28,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
-    //  NotifiticationsComponent,
-      // MemberinfoComponent,
-      ComponentsComponent,
-      // RefreshComponent
     ],
   entryComponents: [
   ],
@@ -49,10 +44,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AngularFireStorageModule,
     HttpClientModule,
     ShareModule,
-    ImageCropperModule,
     MaterialsModule,
     SearchMembersPageModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
     // ShareModule
   ],
   providers: [

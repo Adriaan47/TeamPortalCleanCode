@@ -122,6 +122,7 @@ export class EditProfilePage implements OnInit {
           text: 'OK',
           handler: () => {
             this.router.navigate(['tabs/profile']);
+            this.ngOnInit();
           }
 
         }

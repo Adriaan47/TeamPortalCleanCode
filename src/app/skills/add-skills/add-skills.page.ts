@@ -84,5 +84,6 @@ export class AddSkillsPage implements OnInit {
   }
   Nav() {
     this.router.navigate(['tabs/skills']);
+    this.ngOnInit();
      }
 }

@@ -64,29 +64,26 @@ export class SkillsPage implements OnInit {
                 }, {
                     text: 'Yes',
                     handler: () => {
-this.users.deleteSkill(this.users.getUID(), id).subscribe((res) => {
-    this.res = res;
-});
+                        this.users.deleteSkill(this.users.getUID(), id).subscribe(() => {
+                            return this.users.presentAlert('Delete', 'Skill deleted successfully.');
+                        }, err => {
+                            return this.users.presentAlert('Error', err.message);
+                        });
                     }
                 }
             ]
             // tslint:disable-next-line: semicolon
-});
+        });
         await alert.present();
     }
 
-async DismissClick() {
-    await this.popoverController.dismiss();
-}
-delete(itemid) {
-    this.afs.doc('members');
-}
+    async DismissClick() {
+        await this.popoverController.dismiss();
+    }
 
-deleteSkill(id: string) {
-    this.users.deleteSkill(this.users.getUID(), id);
-}
-refresh(): void {
-    window.location.reload();
-}
+    deleteSkill(id: string) {
+        this.users.deleteSkill(this.users.getUID(), id);
+    }
+
 }
 
