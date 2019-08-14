@@ -18,7 +18,7 @@ export class AddSkillsPage implements OnInit {
 
   mainuser: AngularFirestoreDocument;
   userId: any;
-
+  model: any = {};
   // tslint:disable-next-line: max-line-length
   constructor(
     public router: Router,
@@ -68,8 +68,7 @@ export class AddSkillsPage implements OnInit {
         {
           text: 'OK',
           handler: () => {
-            this.router.navigate(['/tabs/skills']);
-
+            this.router.navigate(['tabs/skills']);
           }
         }
       ]
@@ -92,7 +91,6 @@ export class AddSkillsPage implements OnInit {
         }, {
           text: 'Yes',
           handler: () => {
-            this.router.navigate(['tabs/skills']);
           }
         }
       ]
@@ -103,10 +101,12 @@ export class AddSkillsPage implements OnInit {
 
 
   CreateSkill(skill: NgForm) {
-    this.users.createSkill(this.users.getUID(), skill.value).subscribe(() => {
-      this.ngOnInit();
+     this.users.createSkill(this.users.getUID(), skill.value).subscribe(async () => {
+      await this.presentAlertConfirmAddSkill();
+      await this.router.navigateByUrl('/refresh', {skipLocationChange: true}).then(() => {
+              this.router.navigate([decodeURI(this.location.path())]);
+            });
     }, err => {
-      this.ngOnInit();
       return null;
     });
 

@@ -19,7 +19,6 @@ export class EditProfilePage implements OnInit {
 
   constructor(
     private users: UsersService,
-    private http: Http,
     private afs: AngularFirestore,
     private router: Router,
     private storage: AngularFireStorage,
@@ -74,10 +73,6 @@ export class EditProfilePage implements OnInit {
     this.users.getProfilePicture(this.userID).subscribe(avatar => {
       this.avatar = avatar.avatar;
     });
-    this.router.navigateByUrl('/refresh', { skipLocationChange: true }).then(() => {
-      this.router.navigate([decodeURI(this.location.path())]);
-    });
-
   }
 
   // // tslint:disable-next-line: use-life-cycle-interface
@@ -99,8 +94,11 @@ export class EditProfilePage implements OnInit {
 
   updateDetails(details: NgForm) {
     this.users.updatePublic(this.userID, details.value).subscribe(() => {
+      this.presentAlertConfirm();    
+    }, err => {
+      this.presentAlertConfirm();    
+      return null;  
     });
-    this.presentAlertConfirm();
   }
 
   async presentAlert(title: string, content: string) {

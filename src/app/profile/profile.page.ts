@@ -40,9 +40,6 @@ export class ProfilePage implements OnInit {
     this.users.getProfilePicture(this.userId).subscribe((prof) => {
       this.data = prof.avatar;
     });
-    this.router.navigateByUrl('/refresh', { skipLocationChange: true }).then(() => {
-      this.router.navigate([decodeURI(this.location.path())]);
-    });
   }
 
   edit() {

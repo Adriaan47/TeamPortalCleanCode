@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { ComponentsComponent } from '../profile/components/components.component';
 
 const routes: Routes = [
   {
@@ -18,7 +19,9 @@ const routes: Routes = [
             path: 'edit-profile',
             loadChildren:
               '../profile/edit-profile/edit-profile.module#EditProfilePageModule'
-          }
+          },
+          { path: 'upload-picture', component: ComponentsComponent },
+
         ]
       },
       {

@@ -38,8 +38,7 @@ export class SkillsPage implements OnInit {
     private alertCtrl: AlertController,
     private location: Location,
     public popoverController: PopoverController,
-  ) {
-  }
+  ) {  }
 
   ngOnInit() {
     this.uid = this.users.getUID();
@@ -108,14 +107,8 @@ export class SkillsPage implements OnInit {
   async DismissClick() {
     await this.popoverController.dismiss();
   }
-  delete(itemid) {
-    this.afs.doc('members');
-  }
 
   deleteSkill(id: string) {
     this.users.deleteSkill(this.users.getUID(), id);
-  }
-  refresh(): void {
-    window.location.reload();
   }
 }
