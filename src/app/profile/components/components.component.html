@@ -11,7 +11,7 @@
  <ion-list>
   <div class="modal-body col">
     <div class="col-sm-12">
-      <image-cropper class="ImageCropper" [imageChangedEvent]="imageChangedEvent"
+      <image-cropper style="width: 200px; height: 250px; float:left;" class="ImageCropper" [imageChangedEvent]="imageChangedEvent"
         [maintainAspectRatio]="true" [aspectRatio]="8 / 8" [maintainAspectRatio]="true" [resizeToHeight]="160"
         [resizeToWidth]="150" [cropperMinHeight]="160" [cropperMinWidth]="150" [onlyScaleDown]="true" format="png"
         (imageCropped)="imageCropped($event)">

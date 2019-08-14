@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { FormArray } from '@angular/forms';
-import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { AlertController, PopoverController } from '@ionic/angular';
 import { Skills } from '../services/skills';
 import { UsersService } from '../services/users.service';
-import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
 
 @Component({
@@ -23,30 +19,20 @@ export class SkillsPage implements OnInit {
   uid: string;
   id: any;
 
-  // tslint:disable-next-line: no-inferrable-types
-
-  // tslint:disable-next-line: no-inferrable-types
-
-  // tslint:disable-next-line: max-line-length
   constructor(
-
-    // tslint:disable-next-line: deprecation
-    private http: Http,
     public router: Router,
-    private afs: AngularFirestore,
     private users: UsersService,
     private alertCtrl: AlertController,
     private location: Location,
     public popoverController: PopoverController,
-  ) {  }
+  ) {
+    this.ngOnInit();
+  }
 
   ngOnInit() {
     this.uid = this.users.getUID();
     this.users.getSkills(this.uid).subscribe((res) => {
       this.skills = res;
-    });
-    this.users.getDatas(this.users.getUID()).subscribe(res => {
-      this.res = res;
     });
   }
 

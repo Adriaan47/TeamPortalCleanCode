@@ -67,8 +67,8 @@ export class AddSkillsPage implements OnInit {
       buttons: [
         {
           text: 'OK',
-          handler: () => {
-            this.router.navigate(['tabs/skills']);
+          handler: async () => {
+           await this.router.navigate(['tabs/skills']);
           }
         }
       ]
@@ -103,9 +103,6 @@ export class AddSkillsPage implements OnInit {
   CreateSkill(skill: NgForm) {
      this.users.createSkill(this.users.getUID(), skill.value).subscribe(async () => {
       await this.presentAlertConfirmAddSkill();
-      await this.router.navigateByUrl('/refresh', {skipLocationChange: true}).then(() => {
-              this.router.navigate([decodeURI(this.location.path())]);
-            });
     }, err => {
       return null;
     });
