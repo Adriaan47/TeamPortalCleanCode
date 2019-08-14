@@ -24,10 +24,10 @@
           <ion-item lines="none">
             <ion-label class="FontSize" position="floating" for="name">Skill Name</ion-label>
             <ion-input type="text" class="form-control" id="name" placeholder=" " required [(ngModel)]="sub.name"
-              name="name" #skill_name="ngModel">
+              name="name" #name="ngModel">
             </ion-input>
           </ion-item>
-          <div [hidden]="skill_name.valid || skill_name.pristine" class="alert-danger">
+          <div [hidden]="name.valid || name.pristine" class="alert-danger">
 
             The skill name is required
 
@@ -36,8 +36,8 @@
 
         <div class="form-group">
           <ion-item lines="none">
-            <ion-label class="FontSize" position="floating" for="Skill_level">Skill level</ion-label>
-            <ion-input type="text" class="form-control" id="level" required [(ngModel)]="sub.level" name="level"
+            <ion-label class="FontSize" position="floating" for="level">Skill level</ion-label>
+            <ion-input type="number" class="form-control" id="level" required [(ngModel)]="sub.level" name="level"
               #level="ngModel"> </ion-input>
           </ion-item>
           <div [hidden]="level.valid || level.pristine" class="alert-danger">
@@ -53,7 +53,7 @@
             <ion-label class="FontSize" position="floating" for="Date_last_used">Date last used</ion-label>
             <ion-input>
               <ion-datetime class="form-control" id="lastUsed" placeholder=" " required [(ngModel)]="sub.lastUsed"
-                name="lastUsed" display-format="DD MMM YYYY" #lastUsed="ngModel" name="lastUsed"></ion-datetime>
+                name="lastUsed" display-format="YYYY MM DD" #lastUsed="ngModel" name="lastUsed"></ion-datetime>
             </ion-input>
 
           </ion-item>
@@ -73,8 +73,6 @@
               <ion-select-option value="Tertiary">Tertiary</ion-select-option>
               <ion-select-option value="Online course">Online course</ion-select-option>
               <ion-select-option value="Self study">Self study</ion-select-option>
-              <ion-select-option value="Certification">Certification</ion-select-option>
-
             </ion-select>
           </ion-item>
           <div [hidden]="origin.valid || origin.pristine" class="alert-danger">
