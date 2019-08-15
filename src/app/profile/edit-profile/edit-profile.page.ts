@@ -94,10 +94,11 @@ export class EditProfilePage implements OnInit {
 
   updateDetails(details: NgForm) {
     this.users.updatePublic(this.userID, details.value).subscribe(() => {
-      this.presentAlertConfirm();    
+      this.presentAlertConfirm();
+      this.router.navigate(['tabs/profile']);
     }, err => {
-      this.presentAlertConfirm();    
-      return null;  
+      this.presentAlertConfirm();
+      this.router.navigate(['tabs/profile']);
     });
   }
 
@@ -122,6 +123,7 @@ export class EditProfilePage implements OnInit {
           text: 'OK',
           handler: () => {
             this.router.navigate(['tabs/profile']);
+            this.refresh();
           }
         }
 
@@ -155,5 +157,10 @@ export class EditProfilePage implements OnInit {
   }
   updateProfilePicture() {
     this.fileBtn.nativeElement.click();
+  }
+
+  refresh() {
+    window.location.reload();
+    this.router.navigate(['tabs/profile']);
   }
 }

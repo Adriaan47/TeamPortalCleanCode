@@ -74,4 +74,5 @@ export class ProfilePage implements OnInit {
     this.menu.enable(true, 'first');
     this.menu.open('first');
   }
+
 }
