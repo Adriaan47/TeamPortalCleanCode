@@ -42,11 +42,11 @@ export class UpdateSkillsPage implements OnInit {
 
   async UpdateSkills(form: NgForm) {
   await this.users.updateSkill(this.uid, this.skillID, form.value).subscribe(() => {
-    return null
+    return null;
   }, () => {
     this.presentAlertUpdateSkill();
     return null;
-  });    
+  });
   }
 
 
@@ -70,7 +70,8 @@ export class UpdateSkillsPage implements OnInit {
           handler: () => {
             this.router.navigate(['/tabs/skills']).then(() => {
               this.ngOnInit();
-            })
+              this.refresh();
+            });
           }
         }
       ]
@@ -100,6 +101,10 @@ export class UpdateSkillsPage implements OnInit {
       // tslint:disable-next-line: semicolon
     });
     await alert.present();
+  }
+  refresh() {
+    window.location.reload();
+    this.router.navigate(['tabs/skills']);
   }
 }
 

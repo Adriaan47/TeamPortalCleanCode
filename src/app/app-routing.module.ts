@@ -5,6 +5,7 @@ import { RefreshComponent } from './refresh/refresh.component';
 
 
 const routes: Routes = [
+  {path: '', redirectTo: 'Login', pathMatch: 'full'},
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: '', loadChildren: './tabs/tabs.module#TabsPageModule', canActivate: [AuthGuard] },
   { path: 'refresh', component: RefreshComponent },

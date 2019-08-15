@@ -69,6 +69,7 @@ export class AddSkillsPage implements OnInit {
           text: 'OK',
           handler: async () => {
            await this.router.navigate(['tabs/skills']);
+           this.refresh();
           }
         }
       ]
@@ -110,6 +111,11 @@ export class AddSkillsPage implements OnInit {
   }
   delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  refresh() {
+    window.location.reload();
+    this.router.navigate(['tabs/skills']);
   }
 
 }
