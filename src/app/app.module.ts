@@ -41,7 +41,7 @@ import { RefreshComponent } from './refresh/refresh.component';
   imports: [
     HttpClientModule,
     BrowserModule,
-    IonicModule.forRoot(),
+    IonicModule.forRoot({mode: 'ios'}),
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,

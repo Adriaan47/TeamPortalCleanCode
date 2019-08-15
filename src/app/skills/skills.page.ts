@@ -53,6 +53,7 @@ export class SkillsPage implements OnInit {
           text: 'Yes',
           handler: () => {
             this.router.navigate(['/login']);
+            this.refresh();
           }
         }
       ]
@@ -96,5 +97,10 @@ export class SkillsPage implements OnInit {
 
   deleteSkill(id: string) {
     this.users.deleteSkill(this.users.getUID(), id);
+  }
+
+  refresh() {
+    window.location.reload();
+    this.router.navigate(['/login']);
   }
 }

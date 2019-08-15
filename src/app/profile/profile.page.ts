@@ -62,6 +62,7 @@ export class ProfilePage implements OnInit {
           text: 'Yes',
           handler: () => {
             this.router.navigate(['/login']);
+            this.refresh();
           }
         }
       ]
@@ -73,6 +74,11 @@ export class ProfilePage implements OnInit {
   openFirst() {
     this.menu.enable(true, 'first');
     this.menu.open('first');
+  }
+
+  refresh() {
+    window.location.reload();
+    this.router.navigate(['/login']);
   }
 
 }
