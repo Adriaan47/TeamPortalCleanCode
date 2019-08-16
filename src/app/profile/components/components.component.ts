@@ -62,6 +62,7 @@ export class ComponentsComponent implements OnInit {
             profilePicture: imgage,
           }).then(() => {
             this.router.navigate(['/tabs/profile/edit-profile']);
+            this.refresh();
           }).catch(err => {
             return err.message;
           });
@@ -69,5 +70,20 @@ export class ComponentsComponent implements OnInit {
       )
     ).subscribe();
   }
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  async refresh() {
+    this.router.navigate(['/tabs/profile/edit-profile']);
+    console.log('before delay')
+
+    await this.delay(500);
+
+    // Do something after
+    console.log('after delay');
+    window.location.reload();
+  }
+
 
 }
