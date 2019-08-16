@@ -153,22 +153,24 @@ export class UsersService {
     return this.afAuth.auth.sendPasswordResetEmail(email).then(() => {
       this.presentAlert('Password reset', 'Password reset email sent, check your inbox.');
     }).catch(error => this.presentAlert('Error occured ', error.message));
-    }
-    async presentAlert(title: string, content: string) {
-      const alert = await this.alertController.create({
-        header: title,
-        message: content,
-        buttons: ['OK']
+  }
+  async presentAlert(title: string, content: string) {
+    const alert = await this.alertController.create({
+      header: title,
+      message: content,
+      buttons: ['OK']
 
-      });
-      await alert.present();
-    }
-    // logout user
-    async logout() {
-      this.afAuth.auth.signOut().then(() => {
-        return this.router.navigate(['logout']);
-      }).catch(err => {
-        return err.message;
-      });
-    }
+    });
+    await alert.present();
+  }
+  // Get members with skills
+  getMemberSKills(): Observable<any> {
+    return this.http.get<any>(this.SEARCH_URL);
+  }
+  logout() {
+    return this.afAuth.auth.signOut().then(() => {
+      this.router.navigate(['/login']);
+
+    });
+  }
 }
