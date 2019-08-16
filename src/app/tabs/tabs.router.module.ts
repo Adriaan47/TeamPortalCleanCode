@@ -2,7 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
 import { ComponentsComponent } from '../profile/components/components.component';
+<<<<<<< HEAD
 import { AuthGuard } from '../guard/auth.guard';
+=======
+>>>>>>> 5aa587f100cacf2b8ceaee1313c4788c669993a7
 
 const routes: Routes = [
   {
@@ -21,7 +24,11 @@ const routes: Routes = [
             loadChildren:
               '../profile/edit-profile/edit-profile.module#EditProfilePageModule'
           },
+<<<<<<< HEAD
           { path: 'upload-picture', loadChildren: '../profile/components/components.module#ComponentsModule' },
+=======
+          { path: 'upload-picture', component: ComponentsComponent },
+>>>>>>> 5aa587f100cacf2b8ceaee1313c4788c669993a7
 
         ]
       },
@@ -73,12 +80,16 @@ const routes: Routes = [
         redirectTo: '/tabs/profile',
         pathMatch: 'full'
       }
+<<<<<<< HEAD
     ], canActivate: [AuthGuard]
   },
   {
     path: '',
     redirectTo: '/tabs/profile',
     pathMatch: 'full'
+=======
+    ]
+>>>>>>> 5aa587f100cacf2b8ceaee1313c4788c669993a7
   }
 ];
 

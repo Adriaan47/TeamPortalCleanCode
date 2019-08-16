@@ -2,9 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { AlertController, MenuController } from '@ionic/angular';
+import { AlertController, MenuController  } from '@ionic/angular';
 import { UsersService } from '../services/users.service';
 import { getLocaleDateFormat } from '@angular/common';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
@@ -25,9 +26,10 @@ export class ProfilePage implements OnInit {
     private users: UsersService,
     private menu: MenuController,
     private http: HttpClient,
-    private alertCtrl: AlertController) {
-  }
+    private location: Location,
 
+    private alertCtrl: AlertController) {
+    }
 
   ngOnInit() {
 
@@ -60,6 +62,7 @@ export class ProfilePage implements OnInit {
           text: 'Yes',
           handler: () => {
             this.router.navigate(['/login']);
+            this.refresh();
           }
         }
       ]
@@ -71,6 +74,11 @@ export class ProfilePage implements OnInit {
   openFirst() {
     this.menu.enable(true, 'first');
     this.menu.open('first');
+  }
+
+  refresh() {
+    window.location.reload();
+    this.router.navigate(['/login']);
   }
 
 }

@@ -1,19 +1,24 @@
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ImageCropperModule } from 'ngx-image-cropper';
 import { TabsPageRoutingModule } from './tabs.router.module';
 
 import { TabsPage } from './tabs.page';
+import { ComponentsComponent } from '../profile/components/components.component';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    TabsPageRoutingModule
+    TabsPageRoutingModule,
+    ImageCropperModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
-  declarations: [TabsPage]
+  declarations: [TabsPage, ComponentsComponent,
+  ]
 })
 export class TabsPageModule {}

@@ -70,6 +70,18 @@ export class AppComponent {
 
   async logout() {
     await this.userServ.logout();
+<<<<<<< HEAD
     this.CloseEnd();
+=======
+    this.refresh();
+  }
+
+  close() {
+    this.menu.close();
+  }
+
+  refresh() {
+    window.location.reload();
+>>>>>>> 5aa587f100cacf2b8ceaee1313c4788c669993a7
   }
 }

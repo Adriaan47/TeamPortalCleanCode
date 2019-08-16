@@ -9,33 +9,33 @@
 
       <ion-item class="nav-menu">
         <ion-icon name="contact" slot="start" color="dark" routerLink="/tabs/profile"></ion-icon>
-        <ion-label routerLink="/tabs/profile">Profile</ion-label>
+        <ion-label routerLink="/tabs/profile" (click)='close()'>Profile</ion-label>
       </ion-item>
 
       <ion-item class="nav-menu">
         <ion-icon name="folder" slot="start" color="dark" routerLink="/tabs/projects"></ion-icon>
-        <ion-label routerLink="/tabs/projects">Projects</ion-label>
+        <ion-label routerLink="/tabs/projects" (click)='close()'>Projects</ion-label>
       </ion-item>
 
       <ion-item class="nav-menu">
         <ion-icon name="laptop" slot="start" color="dark" routerLink="/tabs/skills"></ion-icon>
-        <ion-label routerLink="/tabs/skills">Skills</ion-label>
+        <ion-label routerLink="/tabs/skills" (click)='close()'>Skills</ion-label>
       </ion-item>
 
       <ion-item class="nav-menu">
         <ion-icon name="ios-people" slot="start" color="dark" routerLink="/tabs/members"></ion-icon>
-        <ion-label routerLink="/tabs/members">Members</ion-label>
+        <ion-label routerLink="/tabs/members" (click)='close()'>Members</ion-label>
       </ion-item>
 
       <ion-item class="nav-menu" (click)="reset()">
         <ion-icon name="create" slot="start" color="dark"></ion-icon>
-        <ion-label color='dark'>Reset Password</ion-label>
+        <ion-label color='dark' (click)='close()'>Reset Password</ion-label>
       </ion-item>
      
 
      <ion-item class="nav-menu" menu-toggel="left" (click)="CloseEnd()" (click)="presentAlertConfirmLogout()">
         <ion-icon name="exit" slot="start"></ion-icon>
-        <ion-label>Logout</ion-label>
+        <ion-label (click)='close()'>Logout</ion-label>
       </ion-item>
     </ion-content>
   </ion-menu>

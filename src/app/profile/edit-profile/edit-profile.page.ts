@@ -7,7 +7,11 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { NgForm, NgControl } from '@angular/forms';
 import { UserPublic } from '../../services/user.public.interface';
+<<<<<<< HEAD
 import { HttpClient } from '@angular/common/http';
+=======
+import { Location } from '@angular/common';
+>>>>>>> 5aa587f100cacf2b8ceaee1313c4788c669993a7
 
 @Component({
   selector: 'app-edit-profile',
@@ -18,12 +22,16 @@ export class EditProfilePage implements OnInit {
 
   constructor(
     private users: UsersService,
+<<<<<<< HEAD
     private http: HttpClient,
+=======
+>>>>>>> 5aa587f100cacf2b8ceaee1313c4788c669993a7
     private afs: AngularFirestore,
     private router: Router,
     private storage: AngularFireStorage,
     private alertController: AlertController,
     private user: UsersService,
+    private location: Location,
     // tslint:disable-next-line:no-shadowed-variable
     public alertCtrl: AlertController) {
 
@@ -72,7 +80,6 @@ export class EditProfilePage implements OnInit {
     this.users.getProfilePicture(this.userID).subscribe(avatar => {
       this.avatar = avatar.avatar;
     });
-
   }
 
   // // tslint:disable-next-line: use-life-cycle-interface
@@ -95,8 +102,10 @@ export class EditProfilePage implements OnInit {
   updateDetails(details: NgForm) {
     this.users.updatePublic(this.userID, details.value).subscribe(() => {
       this.presentAlertConfirm();
-    }, error => {
-      this.presentAlert('Error occured', error.message);
+      this.router.navigate(['tabs/profile']);
+    }, err => {
+      this.presentAlertConfirm();
+      this.router.navigate(['tabs/profile']);
     });
   }
 
@@ -121,10 +130,14 @@ export class EditProfilePage implements OnInit {
           text: 'OK',
           handler: () => {
             this.router.navigate(['tabs/profile']);
+<<<<<<< HEAD
             this.ngOnInit();
+=======
+            this.refresh();
+>>>>>>> 5aa587f100cacf2b8ceaee1313c4788c669993a7
           }
-
         }
+
       ]
       // tslint:disable-next-line: semicolon
     });
@@ -157,4 +170,8 @@ export class EditProfilePage implements OnInit {
     this.fileBtn.nativeElement.click();
   }
 
+  refresh() {
+    window.location.reload();
+    this.router.navigate(['tabs/profile']);
+  }
 }

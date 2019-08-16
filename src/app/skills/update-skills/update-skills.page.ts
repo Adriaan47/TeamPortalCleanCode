@@ -17,17 +17,12 @@ export class UpdateSkillsPage implements OnInit {
 
   mainuser: AngularFirestoreDocument;
   sub;
-  // tslint:disable-next-line:no-inferrable-types
-  busy: boolean = false;
-
-
   skillID: string;
   res: any;
 
 
   constructor(
     private users: UsersService,
-    private http: Http,
     private route: ActivatedRoute,
     private afs: AngularFirestore,
     private router: Router,
@@ -42,27 +37,20 @@ export class UpdateSkillsPage implements OnInit {
     this.skillID = this.route.snapshot.paramMap.get('id');
     this.users.getCurrentUserSkill(this.uid, this.skillID).subscribe(skill => {
       this.sub = skill;
-      console.log(this.sub);
     });
   }
 
-  async UpdateSkills() {
-    this.skillID = this.route.snapshot.paramMap.get('id');
+  async UpdateSkills(form: NgForm) {
+  await this.users.updateSkill(this.uid, this.skillID, form.value).subscribe(() => {
+    return null;
+  }, () => {
     this.presentAlertUpdateSkill();
+    return null;
+  });
   }
 
-  deleteSkill(id: string) {
-    this.users.deleteSkill(this.users.getUID(), id).subscribe((res) => {
-      this.res = res;
-      console.log(res);
 
-    });
-  }
 
-  deleteDoc() {
-    this.skillID = this.route.snapshot.paramMap.get('id');
-    this.afs.doc(`users/${this.users.getUID()}/skills/${this.skillID}`).delete();
-  }
   doRefresh(event) {
     console.log('Begin async operation');
 
@@ -73,8 +61,6 @@ export class UpdateSkillsPage implements OnInit {
   }
 
   async presentAlertUpdateSkill() {
-    //   this.router.navigate(['/tabs/profile']);
-    // }
     const alert = await this.alertCtrl.create({
       header: 'Update successful',
       message: 'Your skill has been updated',
@@ -82,8 +68,15 @@ export class UpdateSkillsPage implements OnInit {
         {
           text: 'OK',
           handler: () => {
+<<<<<<< HEAD
             this.router.navigate(['/tabs/skills']);
             this.ngOnInit();
+=======
+            this.router.navigate(['/tabs/skills']).then(() => {
+              this.ngOnInit();
+              this.refresh();
+            });
+>>>>>>> 5aa587f100cacf2b8ceaee1313c4788c669993a7
           }
         }
       ]
@@ -113,6 +106,10 @@ export class UpdateSkillsPage implements OnInit {
       // tslint:disable-next-line: semicolon
     });
     await alert.present();
+  }
+  refresh() {
+    window.location.reload();
+    this.router.navigate(['tabs/skills']);
   }
 }
 

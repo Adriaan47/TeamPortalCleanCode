@@ -23,11 +23,6 @@ interface Pictures {
   avatar: string;
   profilePicture: string;
 }
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json'
-  })
-};
 
 @Injectable({
   providedIn: 'root'
@@ -96,7 +91,7 @@ export class UsersService {
   }
 
   updateSkill(uId: string, idSkill: string, skill: Skills) {
-    return this.http.put(`${this.skillUrl}/${uId}/update/${idSkill}`, skill, httpOptions);
+    return this.http.put(`${this.skillUrl}/${uId}/update/${idSkill}`, skill);
   }
 
   getData(): Observable<object> {
@@ -111,7 +106,7 @@ export class UsersService {
     return this.http.get<UserPublic>(`${this.url}/${id}/get-public`);
   }
   updatePublic(id: string, publicDetails: UserPublic) {
-    return this.http.put(`${this.url}/${id}/public`, publicDetails, httpOptions);
+    return this.http.put(`${this.url}/${id}/public`, publicDetails);
   }
   getMember(id: string) {
     return this.http.get(`${this.url}/${id}/member`);
@@ -171,6 +166,10 @@ export class UsersService {
       // Get members with skills
   getMemberSKills(): Observable<any> {
     return this.http.get<any>(this.SEARCH_URL, httpOptions);
+  }
+  // Get members with skills
+  getMemberSKills(): Observable<any> {
+    return this.http.get<any>(this.SEARCH_URL);
   }
   logout() {
     return this.afAuth.auth.signOut().then(() => {
