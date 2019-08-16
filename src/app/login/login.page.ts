@@ -44,6 +44,7 @@ loginUser: any = {};
         color: 'danger'
       });
       toast.present();
+      this.refresh();
     });
   }
 

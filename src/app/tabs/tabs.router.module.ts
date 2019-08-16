@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { ComponentsComponent } from '../profile/components/components.component';
 
 const routes: Routes = [
   {
@@ -18,7 +19,9 @@ const routes: Routes = [
             path: 'edit-profile',
             loadChildren:
               '../profile/edit-profile/edit-profile.module#EditProfilePageModule'
-          }
+          },
+          { path: 'upload-picture', component: ComponentsComponent },
+
         ]
       },
       {
@@ -28,11 +31,6 @@ const routes: Routes = [
             path: '',
             loadChildren: '../projects/projects.module#ProjectsPageModule'
           },
-          {
-            path: 'project-info',
-            loadChildren:
-              '../projects/project-info/project-info.module#ProjectInfoPageModule'
-          }
         ]
       },
       {
@@ -75,11 +73,6 @@ const routes: Routes = [
         pathMatch: 'full'
       }
     ]
-  },
-  {
-    path: '',
-    redirectTo: '/tabs/profile',
-    pathMatch: 'full'
   }
 ];
 
@@ -87,4 +80,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule { }

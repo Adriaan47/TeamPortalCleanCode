@@ -60,13 +60,25 @@ export class AppComponent {
   openEnd() {
     this.menu.open('end');
   }
+  CloseEnd() {
+    this.menu.close();
+  }
   reset() {
     const userEmail = this.afAuth.auth.currentUser.email;
-    this.userServ.resetPassword(userEmail)
+    this.userServ.resetPassword(userEmail);
   }
 
   async logout() {
     await this.userServ.logout();
+    this.refresh();
+  }
+
+  close() {
+    this.menu.close();
+  }
+
+  refresh() {
+    window.location.reload();
   }
 
 }

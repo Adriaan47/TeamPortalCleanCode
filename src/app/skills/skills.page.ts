@@ -1,51 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { FormArray } from '@angular/forms';
-import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { AlertController, PopoverController } from '@ionic/angular';
 import { Skills } from '../services/skills';
 import { UsersService } from '../services/users.service';
-import { HttpClient } from '@angular/common/http';
+import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-skills',
-  templateUrl: './skills.page.html',
-  styleUrls: ['./skills.page.scss'],
+    selector: 'app-skills',
+    templateUrl: './skills.page.html',
+    styleUrls: ['./skills.page.scss'],
 
 })
 export class SkillsPage implements OnInit {
-  res: any;
-  skills: any;
-  Skills: Skills[];
-  skillID: Skills;
-  uid: string;
-  id: any;
+    res: any;
+    skills: any;
+    Skills: Skills[];
+    skillID: Skills;
+    uid: string;
+    id: any;
 
-  // tslint:disable-next-line: no-inferrable-types
-
-  // tslint:disable-next-line: no-inferrable-types
-
-  // tslint:disable-next-line: max-line-length
   constructor(
-
-    // tslint:disable-next-line: deprecation
-    private http: Http,
     public router: Router,
-    private afs: AngularFirestore,
     private users: UsersService,
     private alertCtrl: AlertController,
+    private location: Location,
     public popoverController: PopoverController,
   ) {
+    this.ngOnInit();
   }
 
   ngOnInit() {
     this.uid = this.users.getUID();
     this.users.getSkills(this.uid).subscribe((res) => {
       this.skills = res;
-    });
-    this.users.getDatas(this.users.getUID()).subscribe(res => {
-      this.res = res;
     });
   }
 
@@ -66,6 +53,7 @@ export class SkillsPage implements OnInit {
           text: 'Yes',
           handler: () => {
             this.router.navigate(['/login']);
+            this.refresh();
           }
         }
       ]
@@ -76,7 +64,7 @@ export class SkillsPage implements OnInit {
 
   async presentAlertConfirmDelete(id: string) {
     const alert = await this.alertCtrl.create({
-      header: 'Delete Skill?',
+      header: `Delete Skill?`,
       message: 'Are you sure you want to delete this skill?',
       buttons: [
         {
@@ -89,8 +77,12 @@ export class SkillsPage implements OnInit {
         }, {
           text: 'Yes',
           handler: () => {
-            this.deleteSkill(id);
-            this.refresh();
+            this.users.deleteSkill(this.users.getUID(), id).subscribe(async () => {
+              this.ngOnInit();
+            }, err => {
+              this.ngOnInit();
+              return null;
+            });
           }
         }
       ]
@@ -102,18 +94,14 @@ export class SkillsPage implements OnInit {
   async DismissClick() {
     await this.popoverController.dismiss();
   }
-  delete(itemid) {
-    this.afs.doc('members');
-  }
 
   deleteSkill(id: string) {
-    this.users.deleteSkill(this.users.getUID(), id).subscribe((res) => {
-      this.res = res;
-      console.log(res);
-      this.refresh();
-    });
+    this.users.deleteSkill(this.users.getUID(), id);
   }
-  refresh(): void {
+
+  refresh() {
     window.location.reload();
+    this.router.navigate(['/login']);
   }
 }
+

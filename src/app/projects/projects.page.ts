@@ -11,7 +11,7 @@ import { flatMap } from 'rxjs/operators';
   styleUrls: ['./projects.page.scss'],
 })
 export class ProjectsPage implements OnInit {
-  information: any[];
+  information: any[] = [];
   automaticClose = false;
 
 
@@ -46,6 +46,7 @@ export class ProjectsPage implements OnInit {
           text: 'Yes',
           handler: () => {
             this.router.navigate(['/login']);
+            this.refresh();
           }
         }
       ]
@@ -70,6 +71,11 @@ export class ProjectsPage implements OnInit {
   toogleItem(index, childIndex) {
     this.information[index].children[childIndex].open = !this.information[index].children[childIndex].open;
 
+  }
+
+  refresh() {
+    window.location.reload();
+    this.router.navigate(['/login']);
   }
 
 

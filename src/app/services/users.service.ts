@@ -23,11 +23,6 @@ interface Pictures {
   avatar: string;
   profilePicture: string;
 }
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json'
-  })
-};
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +36,7 @@ export class UsersService {
   userData: any;
   private url = 'https://demoproject-8b1fa.appspot.com/users';
   private skillUrl = `https://demoproject-8b1fa.appspot.com/skills`;
+  private SEARCH_URL = 'https://demoproject-8b1fa.appspot.com/search';
 
 
   constructor(
@@ -95,7 +91,7 @@ export class UsersService {
   }
 
   updateSkill(uId: string, idSkill: string, skill: Skills) {
-    return this.http.put(`${this.skillUrl}/${uId}/update/${idSkill}`, skill, httpOptions);
+    return this.http.put(`${this.skillUrl}/${uId}/update/${idSkill}`, skill);
   }
 
   getData(): Observable<object> {
@@ -110,7 +106,7 @@ export class UsersService {
     return this.http.get<UserPublic>(`${this.url}/${id}/get-public`);
   }
   updatePublic(id: string, publicDetails: UserPublic) {
-    return this.http.put(`${this.url}/${id}/public`, publicDetails, httpOptions);
+    return this.http.put(`${this.url}/${id}/public`, publicDetails);
   }
   getMember(id: string) {
     return this.http.get(`${this.url}/${id}/member`);
@@ -118,10 +114,6 @@ export class UsersService {
 
   getSkills(id: string): Observable<Skills[]> {
     return this.http.get<Skills[]>(`${this.skillUrl}/${id}`);
-  }
-
-  getSkillID(id: string, sid: string): Observable<Skills> {
-    return this.http.get<Skills>(`${this.skillUrl}/${id}/skill/${sid}`);
   }
 
   reAuth(username: string, password: string) {
@@ -159,7 +151,7 @@ export class UsersService {
   // Email link to reset password
   resetPassword(email: string) {
     return this.afAuth.auth.sendPasswordResetEmail(email).then(() => {
-      this.presentAlert('Password reset', 'Password reset email sent, check your inbox.')
+      this.presentAlert('Password reset', 'Password reset email sent, check your inbox.');
     }).catch(error => this.presentAlert('Error occured ', error.message));
   }
   async presentAlert(title: string, content: string) {
@@ -171,10 +163,15 @@ export class UsersService {
     });
     await alert.present();
   }
-
+  // Get members with skills
+  // Get members with skills
+  getMemberSKills(): Observable<any> {
+    return this.http.get<any>(this.SEARCH_URL);
+  }
   logout() {
     return this.afAuth.auth.signOut().then(() => {
       this.router.navigate(['/login']);
+
     });
   }
 }

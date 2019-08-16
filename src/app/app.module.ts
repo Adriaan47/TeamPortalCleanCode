@@ -3,28 +3,22 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-// import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import firebaseConfig from './services/firebase';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { HttpModule } from '@angular/http';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 // import { AuthService } from './services/auth.service';
 import { ShareModule } from './services/share.module';
 import { UsersService } from './services/users.service';
-// import { NotifiticationsComponent } from './info/notifitications/notifitications.component';
 import { HttpClientModule } from '@angular/common/http';
-// import { MemberinfoComponent } from './members/memberinfo/memberinfo.component';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage';
-// import { CropingComponent } from './croping/croping.component';
-// import { RefreshComponent } from './refresh/refresh.component';
-// import { ImageCropperModule } from 'ngx-image-cropper';
+import { RefreshComponent } from './refresh/refresh.component';
+
 
 
 
@@ -33,17 +27,14 @@ import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage';
     AppComponent,
     //  NotifiticationsComponent,
       // MemberinfoComponent,
-      // CropingComponent,
-      // RefreshComponent
+      RefreshComponent
     ],
   entryComponents: [
-    // NotifiticationsComponent,
-    //  MemberinfoComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
-    IonicModule.forRoot(),
+    IonicModule.forRoot({mode: 'ios'}),
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
@@ -51,15 +42,12 @@ import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage';
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
-    // tslint:disable-next-line: deprecation
-    HttpModule,
+    HttpClientModule,
     ShareModule,
-    // ImageCropperModule
     // ShareModule
   ],
   providers: [
     StatusBar,
-    // SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     UsersService,
     // AuthService,

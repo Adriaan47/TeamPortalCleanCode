@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { UsersService } from '../../services/users.service';
 import { NgForm } from '@angular/forms';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-add-skills',
@@ -15,16 +17,23 @@ export class AddSkillsPage implements OnInit {
 
 
   mainuser: AngularFirestoreDocument;
-
-
+  userId: any;
+  model: any = {};
   // tslint:disable-next-line: max-line-length
-  constructor(public router: Router, private afs: AngularFirestore, private users: UsersService, private alertCtrl: AlertController) {
+  constructor(
+    public router: Router,
+    private afs: AngularFirestore,
+    private users: UsersService,
+    private location: Location,
+    private alertCtrl: AlertController) {
 
   }
 
 
 
   ngOnInit() {
+    this.userId = this.users.getUID();
+
   }
 
   async presentAlertConfirmLogout() {
@@ -51,6 +60,8 @@ export class AddSkillsPage implements OnInit {
     await alert.present();
   }
 
+
+
   async presentAlertConfirmAddSkill() {
     const alert = await this.alertCtrl.create({
       header: 'Skill added successfully',
@@ -58,8 +69,9 @@ export class AddSkillsPage implements OnInit {
       buttons: [
         {
           text: 'OK',
-          handler: () => {
-            this.router.navigate(['/tabs/skills']);
+          handler: async () => {
+           await this.router.navigate(['tabs/skills']);
+           this.refresh();
           }
         }
       ]
@@ -82,7 +94,6 @@ export class AddSkillsPage implements OnInit {
         }, {
           text: 'Yes',
           handler: () => {
-            this.router.navigate(['tabs/skills']);
           }
         }
       ]
@@ -93,13 +104,20 @@ export class AddSkillsPage implements OnInit {
 
 
   CreateSkill(skill: NgForm) {
-    console.log(skill.value);
-    this.users.createSkill(this.users.getUID(), skill.value).subscribe(() => {
-      return this.presentAlertConfirmAddSkill().then(() => {
-        this.router.navigate(['skills']);
-      });
+     this.users.createSkill(this.users.getUID(), skill.value).subscribe(async () => {
+      await this.presentAlertConfirmAddSkill();
+    }, err => {
+      return null;
     });
+
+  }
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
+  refresh() {
+    window.location.reload();
+    this.router.navigate(['tabs/skills']);
+  }
 
 }

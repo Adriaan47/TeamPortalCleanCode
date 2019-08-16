@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { UsersService } from '../../services/users.service';
@@ -8,6 +7,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { NgForm, NgControl } from '@angular/forms';
 import { UserPublic } from '../../services/user.public.interface';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-edit-profile',
@@ -18,12 +18,12 @@ export class EditProfilePage implements OnInit {
 
   constructor(
     private users: UsersService,
-    private http: Http,
     private afs: AngularFirestore,
     private router: Router,
     private storage: AngularFireStorage,
     private alertController: AlertController,
     private user: UsersService,
+    private location: Location,
     // tslint:disable-next-line:no-shadowed-variable
     public alertCtrl: AlertController) {
 
@@ -72,7 +72,6 @@ export class EditProfilePage implements OnInit {
     this.users.getProfilePicture(this.userID).subscribe(avatar => {
       this.avatar = avatar.avatar;
     });
-
   }
 
   // // tslint:disable-next-line: use-life-cycle-interface
@@ -95,8 +94,10 @@ export class EditProfilePage implements OnInit {
   updateDetails(details: NgForm) {
     this.users.updatePublic(this.userID, details.value).subscribe(() => {
       this.presentAlertConfirm();
-    }, error => {
-      this.presentAlert('Error occured', error.message);
+      this.router.navigate(['tabs/profile']);
+    }, err => {
+      this.presentAlertConfirm();
+      this.router.navigate(['tabs/profile']);
     });
   }
 
@@ -121,9 +122,10 @@ export class EditProfilePage implements OnInit {
           text: 'OK',
           handler: () => {
             this.router.navigate(['tabs/profile']);
+            this.refresh();
           }
-
         }
+
       ]
       // tslint:disable-next-line: semicolon
     });
@@ -152,5 +154,12 @@ export class EditProfilePage implements OnInit {
     });
     await alert.present();
   }
+  updateProfilePicture() {
+    this.fileBtn.nativeElement.click();
+  }
 
+  refresh() {
+    window.location.reload();
+    this.router.navigate(['tabs/profile']);
+  }
 }

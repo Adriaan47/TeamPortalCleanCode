@@ -16,53 +16,62 @@ import { UsersService } from '../../services/users.service';
 export class UpdateSkillsPage implements OnInit {
 
   mainuser: AngularFirestoreDocument;
-  skills;
   sub;
-  sk: Skills;
   skillID: string;
-  postReference: AngularFirestoreDocument;
   res: any;
-  id: string;
 
 
   constructor(
-    private popoverController: PopoverController,
-    public router: Router,
-    private afs: AngularFirestore,
     private users: UsersService,
     private route: ActivatedRoute,
-    private alertCtrl: AlertController,
-  ) {
-  }
-
-
-  async DismissClick() {
-    await this.popoverController.dismiss();
-  }
-
+    private afs: AngularFirestore,
+    private router: Router,
+    private alertController: AlertController,
+    private user: UsersService,
+    public alertCtrl: AlertController
+  ) { }
+  skill: any;
+  uid: any;
   ngOnInit() {
-    this.id = this.users.getUID();
+    this.uid = this.users.getUID();
     this.skillID = this.route.snapshot.paramMap.get('id');
-    this.skills = this.users.getCurrentUserSkill(this.id, this.skillID);
+    this.users.getCurrentUserSkill(this.uid, this.skillID).subscribe(skill => {
+      this.sub = skill;
+    });
+  }
+
+  async UpdateSkills(form: NgForm) {
+  await this.users.updateSkill(this.uid, this.skillID, form.value).subscribe(() => {
+    return null;
+  }, () => {
+    this.presentAlertUpdateSkill();
+    return null;
+  });
   }
 
 
-  async presentAlertBack() {
+
+  doRefresh(event) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
+  }
+
+  async presentAlertUpdateSkill() {
     const alert = await this.alertCtrl.create({
-      header: 'Discard changes?',
-      message: 'Any unsaved work will be discarded.',
+      header: 'Update successful',
+      message: 'Your skill has been updated',
       buttons: [
         {
-          text: 'No',
-          role: 'cancel',
-          cssClass: 'secondary',
+          text: 'OK',
           handler: () => {
-            console.log('Confirm Cancel: ?');
-          }
-        }, {
-          text: 'Yes',
-          handler: () => {
-            this.router.navigate(['tabs/skills']);
+            this.router.navigate(['/tabs/skills']).then(() => {
+              this.ngOnInit();
+              this.refresh();
+            });
           }
         }
       ]
@@ -70,11 +79,34 @@ export class UpdateSkillsPage implements OnInit {
     });
     await alert.present();
   }
-
-  go() {
-    this.router.navigate(['/tabs/profile']);
+  async presentAlertDiscard() {
+    const alert = await this.alertCtrl.create({
+      header: 'Discard changes?',
+      message: 'Are you sure you want to discard changes?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: ?');
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+            this.router.navigate(['/tabs/skills']);
+          }
+        }
+      ]
+      // tslint:disable-next-line: semicolon
+    });
+    await alert.present();
   }
-
-
-
+  refresh() {
+    window.location.reload();
+    this.router.navigate(['tabs/skills']);
+  }
 }
+
+
+

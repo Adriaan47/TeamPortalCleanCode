@@ -32,8 +32,8 @@
 
 
 
-    <div *ngIf="(res)">
-        <div>
+    <div *ngIf=" (res)">
+        <div class="paddingBottom">
             <ion-item lines="none">
                 <ion-label class="FontSize" position="floating">Enterprise ID</ion-label>
                 <ion-input disable="false" readonly color="dark" placeholder=''>{{res.eid}}
@@ -41,40 +41,40 @@
             </ion-item>
         </div>
 
-        <div>
-            <ion-item lines="none">
+        <div class="paddingBottom">
+            <ion-item lines=" none">
                 <ion-label class="FontSize" position="floating">First name(s)</ion-label>
                 <ion-input disable="false" readonly color="dark" placeholder=''>{{res.name}}</ion-input>
             </ion-item>
         </div>
 
-        <div>
-            <ion-item lines="none">
+        <div class="paddingBottom">
+            <ion-item lines=" none">
                 <ion-label class="FontSize" position="floating">Surname</ion-label>
                 <ion-input disable="false" readonly color="dark" placeholder=''>{{res.surname}}</ion-input>
             </ion-item>
         </div>
 
-        <div>
-            <ion-item lines="none">
+        <div class="paddingBottom">
+            <ion-item lines=" none">
                 <ion-label class="FontSize" position="floating">Career level</ion-label>
                 <ion-input disable="false" readonly color="dark" placeholder=''>{{res.careerLevel}}</ion-input>
             </ion-item>
         </div>
 
-        <div>
-            <ion-item lines="none">
+        <div class="paddingBottom">
+            <ion-item lines=" none">
                 <ion-label class="FontSize" position="floating">Email</ion-label>
                 <ion-input disable="false" readonly color="dark" placeholder=''>{{res.email}}</ion-input>
             </ion-item>
         </div>
-        <div *ngIf="res.showMobile === true">
+        <div class="paddingBottom" *ngIf=" res.showMobile===true">
             <ion-item lines="none">
                 <ion-label class="FontSize" position="floating">Mobile</ion-label>
                 <ion-input disable="false" readonly color="dark" placeholder=''>{{res.mobile}}</ion-input>
             </ion-item>
         </div>
-        <div *ngIf="res.showDOB === true">
+        <div class="paddingBottom" *ngIf=" res.showDOB===true">
             <ion-item lines="none">
                 <ion-label class="FontSize" position="floating">Birth date</ion-label>
                 <ion-input disable="false" readonly color="dark" placeholder=''>{{res.birthDate}}</ion-input>
