@@ -17,28 +17,17 @@ import { UsersService } from './services/users.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage';
-<<<<<<< HEAD
-// import { RefreshComponent } from './refresh/refresh.component';
-
-import { MaterialsModule } from './materials/materials.module';
-import { SearchMembersPageModule } from './search-members/search-members.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-=======
 import { RefreshComponent } from './refresh/refresh.component';
 
->>>>>>> 5aa587f100cacf2b8ceaee1313c4788c669993a7
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-<<<<<<< HEAD
-=======
     //  NotifiticationsComponent,
       // MemberinfoComponent,
       RefreshComponent
->>>>>>> 5aa587f100cacf2b8ceaee1313c4788c669993a7
     ],
   entryComponents: [
   ],
@@ -55,12 +44,6 @@ import { RefreshComponent } from './refresh/refresh.component';
     AngularFireStorageModule,
     HttpClientModule,
     ShareModule,
-<<<<<<< HEAD
-    MaterialsModule,
-    SearchMembersPageModule,
-    BrowserAnimationsModule,
-=======
->>>>>>> 5aa587f100cacf2b8ceaee1313c4788c669993a7
     // ShareModule
   ],
   providers: [

@@ -7,11 +7,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { NgForm, NgControl } from '@angular/forms';
 import { UserPublic } from '../../services/user.public.interface';
-<<<<<<< HEAD
-import { HttpClient } from '@angular/common/http';
-=======
 import { Location } from '@angular/common';
->>>>>>> 5aa587f100cacf2b8ceaee1313c4788c669993a7
 
 @Component({
   selector: 'app-edit-profile',
@@ -22,10 +18,6 @@ export class EditProfilePage implements OnInit {
 
   constructor(
     private users: UsersService,
-<<<<<<< HEAD
-    private http: HttpClient,
-=======
->>>>>>> 5aa587f100cacf2b8ceaee1313c4788c669993a7
     private afs: AngularFirestore,
     private router: Router,
     private storage: AngularFireStorage,
@@ -130,11 +122,7 @@ export class EditProfilePage implements OnInit {
           text: 'OK',
           handler: () => {
             this.router.navigate(['tabs/profile']);
-<<<<<<< HEAD
-            this.ngOnInit();
-=======
             this.refresh();
->>>>>>> 5aa587f100cacf2b8ceaee1313c4788c669993a7
           }
         }
 

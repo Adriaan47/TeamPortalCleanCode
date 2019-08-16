@@ -33,8 +33,6 @@ export class AddSkillsPage implements OnInit {
 
   ngOnInit() {
     this.userId = this.users.getUID();
-<<<<<<< HEAD
-=======
 
   }
 
@@ -60,7 +58,6 @@ export class AddSkillsPage implements OnInit {
       // tslint:disable-next-line: semicolon
     });
     await alert.present();
->>>>>>> 5aa587f100cacf2b8ceaee1313c4788c669993a7
   }
 
 
@@ -72,15 +69,9 @@ export class AddSkillsPage implements OnInit {
       buttons: [
         {
           text: 'OK',
-<<<<<<< HEAD
-          handler: () => {
-            this.Nav();
-
-=======
           handler: async () => {
            await this.router.navigate(['tabs/skills']);
            this.refresh();
->>>>>>> 5aa587f100cacf2b8ceaee1313c4788c669993a7
           }
         }
       ]
@@ -103,10 +94,6 @@ export class AddSkillsPage implements OnInit {
         }, {
           text: 'Yes',
           handler: () => {
-<<<<<<< HEAD
-            this.Nav();
-=======
->>>>>>> 5aa587f100cacf2b8ceaee1313c4788c669993a7
           }
         }
       ]
@@ -127,20 +114,10 @@ export class AddSkillsPage implements OnInit {
   delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
-<<<<<<< HEAD
-  refresh(): void {
-    window.location.reload();
-  }
-  Nav() {
-    this.router.navigate(['tabs/skills']);
-    this.ngOnInit();
-     }
-=======
 
   refresh() {
     window.location.reload();
     this.router.navigate(['tabs/skills']);
   }
 
->>>>>>> 5aa587f100cacf2b8ceaee1313c4788c669993a7
 }

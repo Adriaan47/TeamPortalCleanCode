@@ -15,30 +15,17 @@ export class SearchMembersPage implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['name', 'surname', 'skills'];
   dataSource: MatTableDataSource<SearchView>;
 
-<<<<<<< HEAD
-  constructor(private afs: AngularFirestore, private user: UsersService) {  }
-
-  ngOnInit() {}
-=======
   constructor(private afs: AngularFirestore, private user: UsersService) { }
 
   ngOnInit() { }
->>>>>>> 5aa587f100cacf2b8ceaee1313c4788c669993a7
 
   ngAfterViewInit() {
     this.user.getMemberSKills().subscribe((user: any[]) => {
       user.forEach(doc => {
-<<<<<<< HEAD
-       return this.results.push(this.mapSearchView(doc));
-      });
-      this.dataSource = new MatTableDataSource(this.results);
-      this.dataSource.filterPredicate = (data, filter: string)  => {
-=======
         return this.results.push(this.mapSearchView(doc));
       });
       this.dataSource = new MatTableDataSource(this.results);
       this.dataSource.filterPredicate = (data, filter: string) => {
->>>>>>> 5aa587f100cacf2b8ceaee1313c4788c669993a7
         const accumulator = (currentTerm, key) => {
           return this.nestedFilterCheck(currentTerm, data, key);
         };

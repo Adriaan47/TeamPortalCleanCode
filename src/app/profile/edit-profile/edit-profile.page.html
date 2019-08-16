@@ -79,19 +79,8 @@
         <div class="form-group">
 
           <ion-label class="FontSize" position="floating" for="phoneNumber">Mobile number</ion-label>
-<<<<<<< HEAD
-          <ion-input type="text" class="form-control" id="mobile" required [(ngModel)]="formValue.phoneNumber"
-            name="phoneNumber" #phoneNumber="ngModel"></ion-input>
-
-          <div [hidden]="phoneNumber.valid || phoneNumber.pristine" class="alert-danger">
-
-            Mobile number is required
-
-          </div>
-=======
           <ion-input type="text" class="form-control" pattern="^\+27[0-9]{9}$"  id="mobile" required [(ngModel)]="formValue.phoneNumber" name="phoneNumber"
             #phoneNumber="ngModel"></ion-input>
->>>>>>> 5aa587f100cacf2b8ceaee1313c4788c669993a7
         </div>
 
         <div class="form-group">
