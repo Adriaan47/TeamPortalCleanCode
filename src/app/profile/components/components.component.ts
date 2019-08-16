@@ -61,7 +61,7 @@ export class ComponentsComponent implements OnInit {
           .update({
             profilePicture: imgage,
           }).then(() => {
-            this.router.navigate(['edit-profile']);
+            this.router.navigate(['tabs/profile']);
           }).catch(err => {
             return err.message;
           });
