@@ -38,42 +38,23 @@
     <div [hidden]="submitted" padding>
       <form #heroForm="ngForm">
 
-        <div class="form-group">
-
+        <div class="form-group" *ngIf="Public">
           <ion-label class="FontSize" for="name" position="floating">First name(s)</ion-label>
-          <ion-input type="text" class="form-control" id="name" required [(ngModel)]="formValue.name" name="name"
-            #name="ngModel">
-          </ion-input>
-          <div [hidden]="name.valid || name.pristine" class="alert-danger">
-            First name(s) is required
-          </div>
+          <ion-input type="text" class="form-control" id="name">{{Public.name}}</ion-input>
         </div>
 
 
-        <div class="form-group">
+        <div class="form-group" *ngIf="Public">
 
           <ion-label class="FontSize" position="floating" for="surname">Surname</ion-label>
-          <ion-input type="text" class="form-control" id="surname" required [(ngModel)]="formValue.surname"
-            name="surname" #surname="ngModel"></ion-input>
-
-          <div [hidden]="surname.valid || surname.pristine" class="alert-danger">
-
-            Surname is required
-
-          </div>
+          <ion-input type="text" class="form-control" id="surname">{{Public.surname}}</ion-input>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" *ngIf="Public">
 
           <ion-label class="FontSize" position="floating" for="careerLevel">Career level</ion-label>
-          <ion-input disabled class="form-control" id="careerLevel" required [(ngModel)]="formValue.careerLevel"
-            name="careerLevel" #careerLevel="ngModel"></ion-input>
+          <ion-input class="form-control" id="careerLevel">{{Public.careerLevel}}</ion-input>
 
-          <div [hidden]="careerLevel.valid || careerLevel.pristine" class="alert-danger">
-
-            Career level is required
-
-          </div>
         </div>
 
         <div class="form-group">
